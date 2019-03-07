@@ -21,20 +21,17 @@ describe("index", () => {
   beforeEach(() => {});
 
   it("converts check-circle.svg", () => {
-    return convert(checkCircleString).then(model => {
-      expect(model).toMatchSnapshot();
-    });
+    const model = convert(checkCircleString);
+    return expect(model).toMatchSnapshot();
   });
 
   it("converts toggle.svg", () => {
-    return convert(toggleString).then(model => {
-      expect(model).toMatchSnapshot();
-    });
+    const model = convert(toggleString);
+    return expect(model).toMatchSnapshot();
   });
 
   it("converts toggle-vertical.svg", () => {
-    return convert(toggleVerticalString).then(model => {
-      expect(model).toMatchSnapshot();
-    });
+    const model = convert(toggleVerticalString);
+    return expect(model).toMatchSnapshot();
   });
 });

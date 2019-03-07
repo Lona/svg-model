@@ -1,4 +1,4 @@
-const svgson = require("svgson").default;
+const { parseSync } = require("svgson");
 const svgpath = require("svgpath");
 const transformParser = require("svg-transform-parser").parse;
 const parseCSSColor = require("csscolorparser").parseCSSColor;
@@ -426,11 +426,10 @@ function simplifyNames(node) {
 }
 
 function convert(data) {
-  return svgson(data).then(parsed => {
-    let node = convertNode(parsed);
-    node = simplifyNames(node);
-    return node;
-  });
+  const parsed = parseSync(data);
+  let node = convertNode(parsed);
+  node = simplifyNames(node);
+  return node;
 }
 
 module.exports = convert;

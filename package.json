@@ -9,7 +9,7 @@
     "lodash.upperfirst": "^4.3.1",
     "svg-transform-parser": "^0.0.1",
     "svgpath": "^2.2.1",
-    "svgson": "^3.0.0"
+    "svgson": "dabbott/svgson#svgsonSyncDist"
   },
   "devDependencies": {
     "jest": "^24.1.0"

@@ -10,4 +10,6 @@ if (!filename) {
 
 const svgString = fs.readFileSync(filename, "utf8");
 
-convert(svgString).then(model => console.log(model));
+const model = convert(svgString);
+
+console.log(model);
