@@ -1,4 +1,4 @@
-const svgson = require("svgson-next").default;
+const svgson = require("svgson").default;
 const svgpath = require("svgpath");
 const transformParser = require("svg-transform-parser").parse;
 const parseCSSColor = require("csscolorparser").parseCSSColor;
