@@ -1,5 +1,5 @@
 {
-  "name": "svg-model",
+  "name": "@lona/svg-model",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
