@@ -1,9 +1,19 @@
 {
   "name": "@lona/svg-model",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest:watch",
+    "build": "babel index.js > dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "csscolorparser": "^1.0.3",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
@@ -12,6 +22,8 @@
     "svgson": "dabbott/svgson#svgsonSyncDist"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "jest": "^24.1.0"
   }
 }
