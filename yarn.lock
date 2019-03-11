@@ -3267,9 +3267,9 @@ svgpath@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/svgpath/-/svgpath-2.2.1.tgz#0834bb67c89a76472b2bd06cc101fa7b517b222c"
 
-svgson@dabbott/svgson#svgsonSyncDist:
-  version "3.0.0"
-  resolved "https://codeload.github.com/dabbott/svgson/tar.gz/70935d1ca3c1882d848c3979b87fce9606e8d904"
+svgson@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/svgson/-/svgson-3.1.0.tgz#25d0bda3678490e8e8a23782cc6fa8f458e3c8fa"
   dependencies:
     clean-deep "3.0.2"
     deep-rename-keys "^0.2.1"
