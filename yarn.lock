@@ -4854,12 +4854,12 @@ svg-transform-parser@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/svg-transform-parser/-/svg-transform-parser-0.0.1.tgz#2a15a3d1ab30b449dc49f8cdce1640c4def52d1d"
 
-svgpath@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/svgpath/-/svgpath-2.2.2.tgz#1c70d44e27f7b6bd42a74ed3c960be93e411def3"
-  integrity sha512-7cXFbkZvPkZpKLC+3QIfyUd3/Un/CvJONjTD3Gz5qLuEa73StPOt8kZjTi9apxO6zwCaza0bPNnmzTyrQ4qQlw==
+svgpath@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/svgpath/-/svgpath-2.2.3.tgz#749c673899f92c3a4fc2d5415cf85dec349d9512"
+  integrity sha512-xA0glXYpJ9SYT4JeMp3c0psbqdZsG1c0ywGvdJUPY2FKEgwJV7NgkeYuuQiOxMp+XsK9nCqjm3KDw0LkM1YLXw==
 
-svgson@4.0.0:
+svgson@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/svgson/-/svgson-4.0.0.tgz#87e95156113072b4ad2f0b3336fa45dc63ba166b"
   integrity sha512-4xmo8f7IREKzSimfKLxdFmffWn8ngstS6EYC8Hqoo4twyzLxc1BETdSBz++wx8k9s8EH8hLNi+VoH+7T2pkIgw==

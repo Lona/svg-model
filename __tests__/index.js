@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const convert = require("../index");
+const convert = require("../src/index");
 
 describe("index", () => {
   beforeEach(() => {});

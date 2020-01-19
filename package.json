@@ -21,8 +21,8 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "svg-transform-parser": "^0.0.1",
-    "svgpath": "^2.2.2",
-    "svgson": "4.0.0"
+    "svgpath": "^2.2.3",
+    "svgson": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
