@@ -13,7 +13,7 @@
     "test:watch": "jest:watch",
     "build": "npm run build:node && npm run build:web",
     "build:web": "webpack",
-    "build:node": "babel src/index.js > dist/index.js",
+    "build:node": "rm -rf dist && mkdir dist && babel src/index.js > dist/index.js",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
