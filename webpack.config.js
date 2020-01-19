@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 const paths = {
   dist: resolve(__dirname, "dist"),
-  src: resolve(__dirname)
+  src: resolve(__dirname, "src")
 };
 
 module.exports = [

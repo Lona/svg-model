@@ -198,6 +198,193 @@ Object {
 }
 `;
 
+exports[`index converts react-sketchapp-467.svg 1`] = `
+Object {
+  "data": Object {
+    "children": Array [
+      Object {
+        "data": Object {
+          "children": Array [],
+          "elementPath": Array [
+            "path0",
+          ],
+          "params": Object {
+            "commands": Array [
+              Object {
+                "data": Object {
+                  "to": Object {
+                    "x": 11.467,
+                    "y": 3.727,
+                  },
+                },
+                "type": "move",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 11.756,
+                    "y": 3.916,
+                  },
+                  "controlPoint2": Object {
+                    "x": 11.837,
+                    "y": 4.303,
+                  },
+                  "to": Object {
+                    "x": 11.648,
+                    "y": 4.592,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "data": Object {
+                  "to": Object {
+                    "x": 7.398,
+                    "y": 11.091999999999999,
+                  },
+                },
+                "type": "line",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 7.297760175511338,
+                    "y": 11.244943298179521,
+                  },
+                  "controlPoint2": Object {
+                    "x": 7.135567046529456,
+                    "y": 11.346314596851117,
+                  },
+                  "to": Object {
+                    "x": 6.9541647296126,
+                    "y": 11.36939866687235,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 6.772762412695745,
+                    "y": 11.392482736893584,
+                  },
+                  "controlPoint2": Object {
+                    "x": 6.590349939476579,
+                    "y": 11.33496368876719,
+                  },
+                  "to": Object {
+                    "x": 6.455,
+                    "y": 11.211999999999998,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "data": Object {
+                  "to": Object {
+                    "x": 3.705,
+                    "y": 8.711999999999998,
+                  },
+                },
+                "type": "line",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 3.4612086144142538,
+                    "y": 8.477560117415775,
+                  },
+                  "controlPoint2": Object {
+                    "x": 3.4481480840165033,
+                    "y": 8.091719873804747,
+                  },
+                  "to": Object {
+                    "x": 3.67552822068114,
+                    "y": 7.841331032834762,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 3.9029083573457766,
+                    "y": 7.590942191864775,
+                  },
+                  "controlPoint2": Object {
+                    "x": 4.288218062637749,
+                    "y": 7.566865189312524,
+                  },
+                  "to": Object {
+                    "x": 4.545000000000001,
+                    "y": 7.786999999999999,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "data": Object {
+                  "to": Object {
+                    "x": 6.753000000000001,
+                    "y": 9.793999999999999,
+                  },
+                },
+                "type": "line",
+              },
+              Object {
+                "data": Object {
+                  "to": Object {
+                    "x": 10.602,
+                    "y": 3.9079999999999986,
+                  },
+                },
+                "type": "line",
+              },
+              Object {
+                "data": Object {
+                  "controlPoint1": Object {
+                    "x": 10.790916964649263,
+                    "y": 3.619207202968482,
+                  },
+                  "controlPoint2": Object {
+                    "x": 11.178143380636405,
+                    "y": 3.538180634998918,
+                  },
+                  "to": Object {
+                    "x": 11.467000000000002,
+                    "y": 3.726999999999999,
+                  },
+                },
+                "type": "cubicCurve",
+              },
+              Object {
+                "type": "close",
+              },
+            ],
+            "style": Object {
+              "fill": "black",
+              "strokeLineCap": "butt",
+              "strokeWidth": 1,
+            },
+          },
+        },
+        "type": "path",
+      },
+    ],
+    "elementPath": Array [],
+    "params": Object {
+      "viewBox": Object {
+        "height": 10,
+        "width": 10,
+        "x": 0,
+        "y": 0,
+      },
+    },
+  },
+  "type": "svg",
+}
+`;
+
 exports[`index converts toggle.svg 1`] = `
 Object {
   "data": Object {

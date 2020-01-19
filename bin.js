@@ -1,5 +1,5 @@
 const fs = require("fs");
-const convert = require("./index");
+const convert = require("./dist/index");
 
 const [, , filename] = process.argv;
 

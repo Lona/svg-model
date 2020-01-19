@@ -5,14 +5,15 @@
   "browser": "dist/svg-model.umd.js",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "bin.js"
   ],
   "scripts": {
     "test": "jest",
     "test:watch": "jest:watch",
     "build": "npm run build:node && npm run build:web",
     "build:web": "webpack",
-    "build:node": "babel index.js > dist/index.js",
+    "build:node": "babel src/index.js > dist/index.js",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -20,16 +21,16 @@
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "svg-transform-parser": "^0.0.1",
-    "svgpath": "^2.2.1",
-    "svgson": "3.1.0"
+    "svgpath": "^2.2.2",
+    "svgson": "4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "babel-loader": "^8.0.5",
-    "jest": "^24.1.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "jest": "^24.9.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
