@@ -13,7 +13,7 @@ export type Style = {
 export type Circle = {
   type: "circle";
   data: {
-    elementPath?: string[];
+    elementPath: string[];
     params: {
       center: Point;
       radius: number;
@@ -25,7 +25,7 @@ export type Circle = {
 export type Path = {
   type: "path";
   data: {
-    elementPath?: string[];
+    elementPath: string[];
     params: {
       commands: Commands.Command[];
       style: Style;
@@ -37,7 +37,7 @@ export type Group = {
   type: "group";
   context: SVGAttributes;
   data: {
-    elementPath?: string[];
+    elementPath: string[];
     children: Element[];
   };
 };
@@ -45,7 +45,7 @@ export type Group = {
 export type SVG = {
   type: "svg";
   data: {
-    elementPath?: string[];
+    elementPath: string[];
     children: Element[];
     params: {
       viewBox?: Rect;

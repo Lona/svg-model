@@ -126,6 +126,7 @@ const Builders = {
   ): Elements.Circle => ({
     type: "circle",
     data: {
+      elementPath: [],
       params: {
         center,
         radius,
@@ -139,6 +140,7 @@ const Builders = {
   ): Elements.Path => ({
     type: "path",
     data: {
+      elementPath: [],
       params: {
         commands,
         style,
@@ -276,7 +278,6 @@ function joinTransforms(...transforms: string[]) {
 // to <path> nodes for simpler rendering.
 function convertChild(
   child: SVGNode,
-  elementPath: string[],
   context: SVGAttributes
 ): Elements.Element | null {
   const { type, name, attributes } = child;
@@ -321,7 +322,6 @@ function convertChild(
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        elementPath,
         context
       );
     }
@@ -332,7 +332,6 @@ function convertChild(
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        elementPath,
         context
       );
     }
@@ -347,7 +346,6 @@ function convertChild(
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        elementPath,
         context
       );
     }
@@ -380,7 +378,6 @@ function convertChild(
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        elementPath,
         context
       );
     }
@@ -437,7 +434,7 @@ function convertNode(
 ): Elements.Element | null {
   const { children } = node;
 
-  const converted = convertChild(node, elementPath, context as SVGAttributes);
+  const converted = convertChild(node, context as SVGAttributes);
 
   if (!converted) return null;
 
@@ -474,14 +471,14 @@ function simplifyNames(node: Elements.Element) {
   const names = nodes
     .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
     .map((node) =>
-      camelCase(node.data.elementPath![node.data.elementPath!.length - 1])
+      camelCase(node.data.elementPath[node.data.elementPath.length - 1])
     );
 
   nodes
     .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
     .forEach((node) => {
       const name = camelCase(
-        node.data.elementPath![node.data.elementPath!.length - 1]
+        node.data.elementPath[node.data.elementPath.length - 1]
       );
 
       if (names.filter((x) => x === name).length == 1) {
