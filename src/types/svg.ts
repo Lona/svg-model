@@ -93,13 +93,13 @@ export type SVGDesc = {
   name: "desc";
 };
 
-export type SVGNode =
-  | SVGRoot
-  | SVGTitle
-  | SVGDesc
-  | SVGGroup
+export type SVGParentNode = SVGRoot | SVGGroup;
+
+export type SVGDrawableNode =
   | SVGPath
-  | SVGPolygon
   | SVGPolyline
+  | SVGPolygon
   | SVGCircle
   | SVGRect;
+
+export type SVGNode = SVGParentNode | SVGDrawableNode | SVGTitle | SVGDesc;

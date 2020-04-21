@@ -1,7 +1,13 @@
 import { rect } from "./builders/primitives";
 import { Path, Element } from "./types/elements";
 import { path, style, svg } from "./builders/elements";
-import { SVGBaseAttributes, SVGPathAttributes, SVGNode } from "./types/svg";
+import {
+  SVGBaseAttributes,
+  SVGPathAttributes,
+  SVGNode,
+  SVGParentNode,
+  SVGDrawableNode,
+} from "./types/svg";
 import { convert as convertPath } from "./path";
 
 const elementToPath: (element: SVGNode) => string = require("element-to-path");
@@ -43,38 +49,35 @@ function createPathElement(
 // Currently, all drawing nodes (rect, circle, polyline) are converted
 // to <path> nodes for simpler rendering.
 function convertElement(
-  child: SVGNode,
+  child: SVGParentNode | SVGDrawableNode,
   context: SVGBaseAttributes
-): Element | null {
+): [Element, SVGBaseAttributes] | null {
   switch (child.name) {
-    case "title":
-    case "desc":
-      return null;
     case "svg": {
       const { viewBox } = child.attributes;
 
       const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
 
-      return svg(rect(vx, vy, vw, vh));
+      return [svg(rect(vx, vy, vw, vh)), context];
     }
     case "path": {
-      return createPathElement(child.attributes, context);
+      return [createPathElement(child.attributes, context), context];
     }
     case "polyline":
     case "polygon": {
       const { points, ...rest } = child.attributes;
       const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
+      return [createPathElement({ d: path, ...rest }, context), context];
     }
     case "circle": {
       const { cx, cy, r, ...rest } = child.attributes;
       const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
+      return [createPathElement({ d: path, ...rest }, context), context];
     }
     case "rect": {
       const { x, y, width, height, rx, ry, ...rest } = child.attributes;
       const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
+      return [createPathElement({ d: path, ...rest }, context), context];
     }
     case "g": {
       const transform = joinTransforms(
@@ -82,12 +85,14 @@ function convertElement(
         child.attributes.transform
       );
 
-      return {
-        type: "group",
-        path: [],
-        context: { ...context, ...child.attributes, transform },
-        data: { children: [] },
-      };
+      return [
+        {
+          type: "group",
+          path: [],
+          data: { children: [] },
+        },
+        { ...context, ...child.attributes, transform },
+      ];
     }
     default:
       console.log("Unused svg", child["type"], child["name"]);
@@ -144,21 +149,25 @@ export function convert(
   path: string[] = [],
   context: SVGBaseAttributes = {} as SVGBaseAttributes
 ): Element | null {
+  if (node.name === "desc" || node.name === "title") return null;
+
   const converted = convertElement(node, context);
 
   if (!converted) return null;
 
-  converted.path = path;
+  const [element, newContext] = converted;
 
-  if (converted.type === "group" || converted.type === "svg") {
+  element.path = path;
+
+  if (element.type === "group" || element.type === "svg") {
     const children = "children" in node ? node.children : [];
 
-    converted.data.children = convertNodes(
+    element.data.children = convertNodes(
       children,
       path,
-      converted.type === "group" ? converted.context : context
+      element.type === "group" ? newContext : context
     );
   }
 
-  return converted;
+  return element;
 }

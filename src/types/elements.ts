@@ -1,6 +1,5 @@
 import { Point, Size, Rect, PointString } from "./primitives";
 import * as Commands from "./commands";
-import { SVGAttributes } from "./svg";
 
 export type Style = {
   fill?: string;
@@ -36,7 +35,6 @@ export type Path = {
 export type Group = {
   type: "group";
   path: string[];
-  context: SVGAttributes;
   data: {
     children: Element[];
   };
