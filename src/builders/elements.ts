@@ -33,8 +33,8 @@ export const circle = (
   radius: number
 ): Circle => ({
   type: "circle",
+  path: [],
   data: {
-    elementPath: [],
     params: {
       center,
       radius,
@@ -45,8 +45,8 @@ export const circle = (
 
 export const path = (style: Style, commands: Commands.Command[]): Path => ({
   type: "path",
+  path: [],
   data: {
-    elementPath: [],
     params: {
       commands,
       style,
@@ -56,9 +56,9 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
 
 export const svg = (viewBox: Rect): SVG => ({
   type: "svg",
+  path: [],
   data: {
     children: [],
-    elementPath: [],
     params: {
       ...(viewBox && { viewBox }),
     },

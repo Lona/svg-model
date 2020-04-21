@@ -83,8 +83,9 @@ function convertElement(
 
       return {
         type: "group",
+        path: [],
         context: { ...context, ...attributes, transform },
-        data: { children: [], elementPath: [] },
+        data: { children: [] },
       };
     }
     default:
@@ -111,8 +112,10 @@ function generateName(
   );
 }
 
-// Convert all children, filtering out groups and the "element path", which
-// is ultimately used as the variable name, to each node
+/**
+ * Convert all children, filtering out groups and the "element path",
+ * which is ultimately used as the variable name, to each node
+ */
 function convertNodes(
   nodes: SVGNode[],
   parentPath: string[],
@@ -135,26 +138,22 @@ function convertNodes(
 
 export function convert(
   node: SVGNode,
-  elementPath: string[] = [],
+  path: string[] = [],
   context: SVGAttributes = {} as SVGAttributes
 ): Element | null {
-  const { children } = node;
-
-  const converted = convertElement(node, context as SVGAttributes);
+  const converted = convertElement(node, context);
 
   if (!converted) return null;
 
-  return Object.assign({}, converted, {
-    data: {
-      ...converted.data,
-      elementPath,
-      ...(children && {
-        children: convertNodes(
-          children,
-          elementPath,
-          converted.type === "group" ? converted.context : context
-        ),
-      }),
-    },
-  });
+  converted.path = path;
+
+  if (converted.type === "group" || converted.type === "svg") {
+    converted.data.children = convertNodes(
+      node.children || [],
+      path,
+      converted.type === "group" ? converted.context : context
+    );
+  }
+
+  return converted;
 }

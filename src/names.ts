@@ -18,20 +18,16 @@ export function assignUniqueNames(node: Element) {
   const nodes = flatten(node);
 
   const names = nodes
-    .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
-    .map((node) =>
-      camelCase(node.data.elementPath[node.data.elementPath.length - 1])
-    );
+    .filter((node) => node.path && node.path.length > 0)
+    .map((node) => camelCase(node.path[node.path.length - 1]));
 
   nodes
-    .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
+    .filter((node) => node.path && node.path.length > 0)
     .forEach((node) => {
-      const name = camelCase(
-        node.data.elementPath[node.data.elementPath.length - 1]
-      );
+      const name = camelCase(node.path[node.path.length - 1]);
 
       if (names.filter((x) => x === name).length == 1) {
-        node.data.elementPath = [name];
+        node.path = [name];
       }
     });
 
