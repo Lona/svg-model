@@ -1,23 +1,26 @@
 {
   "name": "@lona/svg-model",
-  "version": "1.0.4",
-  "main": "dist/index.js",
+  "version": "2.0.0",
+  "main": "lib/index.js",
   "browser": "dist/svg-model.umd.js",
   "license": "MIT",
   "files": [
+    "lib",
     "dist",
     "bin.js"
   ],
   "scripts": {
     "test": "jest",
-    "test:watch": "jest:watch",
+    "test:watch": "jest --watch",
     "build": "npm run build:node && npm run build:web",
     "build:web": "webpack",
-    "build:node": "rm -rf dist && mkdir dist && babel src/index.js > dist/index.js",
+    "build:node": "rm -rf ./lib && tsc --declaration",
+    "build:node:watch": "rm -rf ./lib && tsc --watch --declaration",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "csscolorparser": "^1.0.3",
+    "element-to-path": "^1.2.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "svg-transform-parser": "^0.0.1",
@@ -27,9 +30,16 @@
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "babel-loader": "^8.0.6",
-    "jest": "^24.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@types/jest": "^25.2.1",
+    "@types/lodash.camelcase": "^4.3.6",
+    "@types/lodash.upperfirst": "^4.3.6",
+    "@types/node": "^13.13.1",
+    "babel-loader": "^8.1.0",
+    "jest": "^25.4.0",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }

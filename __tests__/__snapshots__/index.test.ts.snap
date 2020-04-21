@@ -6,64 +6,25 @@ Object {
     "children": Array [
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "oval",
-          ],
           "params": Object {
             "commands": Array [
               Object {
                 "data": Object {
                   "to": Object {
-                    "x": 12,
-                    "y": 0,
+                    "x": 24,
+                    "y": 12,
                   },
                 },
                 "type": "move",
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 0,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
-                  "controlPoint1": Object {
-                    "x": 18.627416997972,
-                    "y": 0,
-                  },
-                  "controlPoint2": Object {
-                    "x": 24,
-                    "y": 5.3725830020280005,
-                  },
-                  "to": Object {
-                    "x": 24,
-                    "y": 12,
-                  },
-                },
-                "type": "cubicCurve",
-              },
-              Object {
-                "data": Object {
-                  "to": Object {
-                    "x": 24,
-                    "y": 12,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
                     "x": 24,
-                    "y": 18.627416997972,
+                    "y": 18.62741699796952,
                   },
                   "controlPoint2": Object {
-                    "x": 18.627416997972,
+                    "x": 18.627416997969522,
                     "y": 24,
                   },
                   "to": Object {
@@ -75,52 +36,51 @@ Object {
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 24,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
-                    "x": 5.3725830020280005,
+                    "x": 5.372583002030481,
                     "y": 24,
                   },
                   "controlPoint2": Object {
-                    "x": 0,
-                    "y": 18.627416997972,
+                    "x": 1.7763568394002505e-15,
+                    "y": 18.627416997969522,
                   },
                   "to": Object {
                     "x": 0,
-                    "y": 12,
+                    "y": 12.000000000000002,
                   },
                 },
                 "type": "cubicCurve",
               },
               Object {
                 "data": Object {
-                  "to": Object {
+                  "controlPoint1": Object {
                     "x": 0,
-                    "y": 12,
+                    "y": 5.372583002030481,
+                  },
+                  "controlPoint2": Object {
+                    "x": 5.372583002030478,
+                    "y": 1.7763568394002505e-15,
+                  },
+                  "to": Object {
+                    "x": 11.999999999999998,
+                    "y": 0,
                   },
                 },
-                "type": "line",
+                "type": "cubicCurve",
               },
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 0,
-                    "y": 5.3725830020280005,
+                    "x": 18.62741699796952,
+                    "y": 0,
                   },
                   "controlPoint2": Object {
-                    "x": 5.3725830020280005,
-                    "y": 0,
+                    "x": 24,
+                    "y": 5.372583002030478,
                   },
                   "to": Object {
-                    "x": 12,
-                    "y": 0,
+                    "x": 24,
+                    "y": 11.999999999999996,
                   },
                 },
                 "type": "cubicCurve",
@@ -136,14 +96,11 @@ Object {
             },
           },
         },
+        "id": "oval",
         "type": "path",
       },
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "path",
-          ],
           "params": Object {
             "commands": Array [
               Object {
@@ -181,10 +138,10 @@ Object {
             },
           },
         },
+        "id": "path",
         "type": "path",
       },
     ],
-    "elementPath": Array [],
     "params": Object {
       "viewBox": Object {
         "height": 24,
@@ -194,6 +151,7 @@ Object {
       },
     },
   },
+  "id": "",
   "type": "svg",
 }
 `;
@@ -204,10 +162,6 @@ Object {
     "children": Array [
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "path0",
-          ],
           "params": Object {
             "commands": Array [
               Object {
@@ -368,10 +322,10 @@ Object {
             },
           },
         },
+        "id": "path0",
         "type": "path",
       },
     ],
-    "elementPath": Array [],
     "params": Object {
       "viewBox": Object {
         "height": 10,
@@ -381,6 +335,7 @@ Object {
       },
     },
   },
+  "id": "",
   "type": "svg",
 }
 `;
@@ -391,10 +346,6 @@ Object {
     "children": Array [
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "rectangle",
-          ],
           "params": Object {
             "commands": Array [
               Object {
@@ -418,12 +369,12 @@ Object {
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 42.3512746230565,
+                    "x": 42.351274623054124,
                     "y": 0.5,
                   },
                   "controlPoint2": Object {
                     "x": 47.5,
-                    "y": 5.6487253769435,
+                    "y": 5.648725376945877,
                   },
                   "to": Object {
                     "x": 47.5,
@@ -445,10 +396,10 @@ Object {
                 "data": Object {
                   "controlPoint1": Object {
                     "x": 47.5,
-                    "y": 18.3512746230565,
+                    "y": 18.351274623054124,
                   },
                   "controlPoint2": Object {
-                    "x": 42.3512746230565,
+                    "x": 42.351274623054124,
                     "y": 23.5,
                   },
                   "to": Object {
@@ -470,16 +421,16 @@ Object {
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 5.6487253769435,
+                    "x": 5.648725376945878,
                     "y": 23.5,
                   },
                   "controlPoint2": Object {
-                    "x": 0.5,
-                    "y": 18.3512746230565,
+                    "x": 0.5000000000000018,
+                    "y": 18.351274623054124,
                   },
                   "to": Object {
                     "x": 0.5,
-                    "y": 12,
+                    "y": 12.000000000000002,
                   },
                 },
                 "type": "cubicCurve",
@@ -497,14 +448,14 @@ Object {
                 "data": Object {
                   "controlPoint1": Object {
                     "x": 0.5,
-                    "y": 5.6487253769435,
+                    "y": 5.648725376945878,
                   },
                   "controlPoint2": Object {
-                    "x": 5.6487253769435,
-                    "y": 0.5,
+                    "x": 5.648725376945874,
+                    "y": 0.5000000000000018,
                   },
                   "to": Object {
-                    "x": 12,
+                    "x": 11.999999999999998,
                     "y": 0.5,
                   },
                 },
@@ -522,68 +473,30 @@ Object {
             },
           },
         },
+        "id": "rectangle",
         "type": "path",
       },
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "oval",
-          ],
           "params": Object {
             "commands": Array [
               Object {
                 "data": Object {
                   "to": Object {
-                    "x": 12,
-                    "y": 2,
+                    "x": 22,
+                    "y": 12,
                   },
                 },
                 "type": "move",
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 2,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
-                  "controlPoint1": Object {
-                    "x": 17.52284749831,
-                    "y": 2,
-                  },
-                  "controlPoint2": Object {
-                    "x": 22,
-                    "y": 6.47715250169,
-                  },
-                  "to": Object {
-                    "x": 22,
-                    "y": 12,
-                  },
-                },
-                "type": "cubicCurve",
-              },
-              Object {
-                "data": Object {
-                  "to": Object {
-                    "x": 22,
-                    "y": 12,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
                     "x": 22,
-                    "y": 17.52284749831,
+                    "y": 17.522847498307932,
                   },
                   "controlPoint2": Object {
-                    "x": 17.52284749831,
+                    "x": 17.522847498307932,
                     "y": 22,
                   },
                   "to": Object {
@@ -595,52 +508,51 @@ Object {
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 22,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
-                    "x": 6.47715250169,
+                    "x": 6.477152501692068,
                     "y": 22,
                   },
                   "controlPoint2": Object {
-                    "x": 2,
-                    "y": 17.52284749831,
+                    "x": 2.0000000000000018,
+                    "y": 17.522847498307932,
                   },
                   "to": Object {
                     "x": 2,
-                    "y": 12,
+                    "y": 12.000000000000002,
                   },
                 },
                 "type": "cubicCurve",
               },
               Object {
                 "data": Object {
-                  "to": Object {
+                  "controlPoint1": Object {
                     "x": 2,
-                    "y": 12,
+                    "y": 6.477152501692068,
+                  },
+                  "controlPoint2": Object {
+                    "x": 6.477152501692064,
+                    "y": 2.0000000000000018,
+                  },
+                  "to": Object {
+                    "x": 11.999999999999998,
+                    "y": 2,
                   },
                 },
-                "type": "line",
+                "type": "cubicCurve",
               },
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 2,
-                    "y": 6.47715250169,
+                    "x": 17.522847498307932,
+                    "y": 2,
                   },
                   "controlPoint2": Object {
-                    "x": 6.47715250169,
-                    "y": 2,
+                    "x": 22,
+                    "y": 6.477152501692064,
                   },
                   "to": Object {
-                    "x": 12,
-                    "y": 2,
+                    "x": 22,
+                    "y": 11.999999999999998,
                   },
                 },
                 "type": "cubicCurve",
@@ -656,10 +568,10 @@ Object {
             },
           },
         },
+        "id": "oval",
         "type": "path",
       },
     ],
-    "elementPath": Array [],
     "params": Object {
       "viewBox": Object {
         "height": 24,
@@ -669,6 +581,7 @@ Object {
       },
     },
   },
+  "id": "",
   "type": "svg",
 }
 `;
@@ -679,10 +592,6 @@ Object {
     "children": Array [
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "rectangle",
-          ],
           "params": Object {
             "commands": Array [
               Object {
@@ -706,12 +615,12 @@ Object {
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 18.3512746230565,
+                    "x": 18.351274623054124,
                     "y": 0.5,
                   },
                   "controlPoint2": Object {
                     "x": 23.5,
-                    "y": 5.6487253769435,
+                    "y": 5.648725376945877,
                   },
                   "to": Object {
                     "x": 23.5,
@@ -733,10 +642,10 @@ Object {
                 "data": Object {
                   "controlPoint1": Object {
                     "x": 23.5,
-                    "y": 42.3512746230565,
+                    "y": 42.351274623054124,
                   },
                   "controlPoint2": Object {
-                    "x": 18.3512746230565,
+                    "x": 18.351274623054124,
                     "y": 47.5,
                   },
                   "to": Object {
@@ -758,12 +667,12 @@ Object {
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 5.6487253769435,
+                    "x": 5.648725376945878,
                     "y": 47.5,
                   },
                   "controlPoint2": Object {
-                    "x": 0.5,
-                    "y": 42.3512746230565,
+                    "x": 0.5000000000000018,
+                    "y": 42.351274623054124,
                   },
                   "to": Object {
                     "x": 0.5,
@@ -785,14 +694,14 @@ Object {
                 "data": Object {
                   "controlPoint1": Object {
                     "x": 0.5,
-                    "y": 5.6487253769435,
+                    "y": 5.648725376945878,
                   },
                   "controlPoint2": Object {
-                    "x": 5.6487253769435,
-                    "y": 0.5,
+                    "x": 5.648725376945874,
+                    "y": 0.5000000000000018,
                   },
                   "to": Object {
-                    "x": 12,
+                    "x": 11.999999999999998,
                     "y": 0.5,
                   },
                 },
@@ -810,68 +719,30 @@ Object {
             },
           },
         },
+        "id": "rectangle",
         "type": "path",
       },
       Object {
         "data": Object {
-          "children": Array [],
-          "elementPath": Array [
-            "oval",
-          ],
           "params": Object {
             "commands": Array [
               Object {
                 "data": Object {
                   "to": Object {
-                    "x": 12,
-                    "y": 2,
+                    "x": 22,
+                    "y": 12,
                   },
                 },
                 "type": "move",
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 2,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
-                  "controlPoint1": Object {
-                    "x": 17.52284749831,
-                    "y": 2,
-                  },
-                  "controlPoint2": Object {
-                    "x": 22,
-                    "y": 6.47715250169,
-                  },
-                  "to": Object {
-                    "x": 22,
-                    "y": 12,
-                  },
-                },
-                "type": "cubicCurve",
-              },
-              Object {
-                "data": Object {
-                  "to": Object {
-                    "x": 22,
-                    "y": 12,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
                     "x": 22,
-                    "y": 17.52284749831,
+                    "y": 17.522847498307932,
                   },
                   "controlPoint2": Object {
-                    "x": 17.52284749831,
+                    "x": 17.522847498307932,
                     "y": 22,
                   },
                   "to": Object {
@@ -883,52 +754,51 @@ Object {
               },
               Object {
                 "data": Object {
-                  "to": Object {
-                    "x": 12,
-                    "y": 22,
-                  },
-                },
-                "type": "line",
-              },
-              Object {
-                "data": Object {
                   "controlPoint1": Object {
-                    "x": 6.47715250169,
+                    "x": 6.477152501692068,
                     "y": 22,
                   },
                   "controlPoint2": Object {
-                    "x": 2,
-                    "y": 17.52284749831,
+                    "x": 2.0000000000000018,
+                    "y": 17.522847498307932,
                   },
                   "to": Object {
                     "x": 2,
-                    "y": 12,
+                    "y": 12.000000000000002,
                   },
                 },
                 "type": "cubicCurve",
               },
               Object {
                 "data": Object {
-                  "to": Object {
+                  "controlPoint1": Object {
                     "x": 2,
-                    "y": 12,
+                    "y": 6.477152501692068,
+                  },
+                  "controlPoint2": Object {
+                    "x": 6.477152501692064,
+                    "y": 2.0000000000000018,
+                  },
+                  "to": Object {
+                    "x": 11.999999999999998,
+                    "y": 2,
                   },
                 },
-                "type": "line",
+                "type": "cubicCurve",
               },
               Object {
                 "data": Object {
                   "controlPoint1": Object {
-                    "x": 2,
-                    "y": 6.47715250169,
+                    "x": 17.522847498307932,
+                    "y": 2,
                   },
                   "controlPoint2": Object {
-                    "x": 6.47715250169,
-                    "y": 2,
+                    "x": 22,
+                    "y": 6.477152501692064,
                   },
                   "to": Object {
-                    "x": 12,
-                    "y": 2,
+                    "x": 22,
+                    "y": 11.999999999999998,
                   },
                 },
                 "type": "cubicCurve",
@@ -944,10 +814,10 @@ Object {
             },
           },
         },
+        "id": "oval",
         "type": "path",
       },
     ],
-    "elementPath": Array [],
     "params": Object {
       "viewBox": Object {
         "height": 48,
@@ -957,6 +827,7 @@ Object {
       },
     },
   },
+  "id": "",
   "type": "svg",
 }
 `;
