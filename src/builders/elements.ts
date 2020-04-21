@@ -1,5 +1,5 @@
-import { Point, Rect } from "../types/primitives";
-import { Style, Circle, Path, SVG } from "../types/elements";
+import { Rect } from "../types/primitives";
+import { Style, Path, SVG } from "../types/elements";
 import * as Commands from "../types/commands";
 
 const parseCSSColor: (color: string) => number[] = require("csscolorparser")
@@ -27,25 +27,9 @@ export const style = (
   strokeLineCap: strokeLineCap || "butt",
 });
 
-export const circle = (
-  style: Style,
-  center: Point,
-  radius: number
-): Circle => ({
-  type: "circle",
-  path: [],
-  data: {
-    params: {
-      center,
-      radius,
-      style,
-    },
-  },
-});
-
 export const path = (style: Style, commands: Commands.Command[]): Path => ({
   type: "path",
-  path: [],
+  id: "",
   data: {
     params: {
       commands,
@@ -56,7 +40,7 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
 
 export const svg = (viewBox: Rect): SVG => ({
   type: "svg",
-  path: [],
+  id: "",
   data: {
     children: [],
     params: {

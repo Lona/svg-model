@@ -1,5 +1,5 @@
 const fs = require("fs");
-const convert = require("./dist/index");
+const convert = require("./lib/index.js").default;
 
 const [, , filename] = process.argv;
 

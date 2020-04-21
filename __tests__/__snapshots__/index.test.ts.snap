@@ -96,9 +96,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "oval",
-        ],
+        "id": "oval",
         "type": "path",
       },
       Object {
@@ -140,9 +138,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "path",
-        ],
+        "id": "path",
         "type": "path",
       },
     ],
@@ -155,7 +151,7 @@ Object {
       },
     },
   },
-  "path": Array [],
+  "id": "",
   "type": "svg",
 }
 `;
@@ -326,9 +322,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "path0",
-        ],
+        "id": "path0",
         "type": "path",
       },
     ],
@@ -341,7 +335,7 @@ Object {
       },
     },
   },
-  "path": Array [],
+  "id": "",
   "type": "svg",
 }
 `;
@@ -479,9 +473,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "rectangle",
-        ],
+        "id": "rectangle",
         "type": "path",
       },
       Object {
@@ -576,9 +568,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "oval",
-        ],
+        "id": "oval",
         "type": "path",
       },
     ],
@@ -591,7 +581,7 @@ Object {
       },
     },
   },
-  "path": Array [],
+  "id": "",
   "type": "svg",
 }
 `;
@@ -729,9 +719,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "rectangle",
-        ],
+        "id": "rectangle",
         "type": "path",
       },
       Object {
@@ -826,9 +814,7 @@ Object {
             },
           },
         },
-        "path": Array [
-          "oval",
-        ],
+        "id": "oval",
         "type": "path",
       },
     ],
@@ -841,7 +827,7 @@ Object {
       },
     },
   },
-  "path": Array [],
+  "id": "",
   "type": "svg",
 }
 `;

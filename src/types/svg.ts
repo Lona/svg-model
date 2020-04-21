@@ -97,6 +97,4 @@ export type SVGDrawableNode =
 
 export type SVGChildNode = SVGGroup | SVGDrawableNode | SVGUnknown;
 
-export type SVGParentNode = SVGRoot | SVGGroup;
-
-export type SVGNode = SVGParentNode | SVGDrawableNode | SVGUnknown;
+export type SVGNode = SVGRoot | SVGGroup | SVGDrawableNode | SVGUnknown;

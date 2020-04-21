@@ -11,7 +11,7 @@ export type Style = {
 
 export type Path = {
   type: "path";
-  path: string[];
+  id: string;
   data: {
     params: {
       commands: Commands.Command[];
@@ -22,7 +22,7 @@ export type Path = {
 
 export type SVG = {
   type: "svg";
-  path: string[];
+  id: string;
   data: {
     children: ChildElement[];
     params: {

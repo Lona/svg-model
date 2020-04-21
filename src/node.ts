@@ -1,11 +1,12 @@
+import camelCase from "lodash.camelcase";
+import upperFirst from "lodash.upperfirst";
+
 import { rect } from "./builders/primitives";
-import { Path, Element, ChildElement } from "./types/elements";
+import { Path, ChildElement, SVG } from "./types/elements";
 import { path, style, svg } from "./builders/elements";
 import {
   SVGBaseAttributes,
   SVGPathAttributes,
-  SVGNode,
-  SVGParentNode,
   SVGDrawableNode,
   SVGGroup,
   SVGRoot,
@@ -13,11 +14,7 @@ import {
   SVGChildNode,
 } from "./types/svg";
 import { convert as convertPath } from "./path";
-
-const elementToPath: (element: SVGNode) => string = require("element-to-path");
-
-const camelCase = require("lodash.camelcase");
-const upperFirst = require("lodash.upperfirst");
+import elementToPath from "./element-to-path";
 
 function joinTransforms(...transforms: (string | undefined)[]) {
   return transforms.filter((x) => !!x).join(" ");
@@ -111,6 +108,8 @@ function generateName(
   );
 }
 
+type ConvertedNode = { element: ChildElement; path: string[] };
+
 /**
  * Convert all children, filtering out groups and adding the "element path",
  * which is ultimately used as the variable name, to each node
@@ -119,9 +118,9 @@ function convertNodes(
   nodes: SVGChildNode[],
   parentPath: string[],
   context: SVGBaseAttributes
-): ChildElement[] {
+): ConvertedNode[] {
   return nodes.reduce(
-    (acc: ChildElement[], node: SVGChildNode, index: number) => {
+    (acc: ConvertedNode[], node: SVGChildNode, index: number) => {
       const attributes = "attributes" in node ? node.attributes : null;
       const name = generateName(attributes, node.name, index);
       const path = [...parentPath, name];
@@ -136,8 +135,7 @@ function convertNodes(
         const element = convertDrawableNode(node, context);
 
         if (element) {
-          element.path = path;
-          return [...acc, element];
+          return [...acc, { element, path }];
         } else {
           return acc;
         }
@@ -147,12 +145,38 @@ function convertNodes(
   );
 }
 
-export function convertRoot(node: SVGRoot): Element | null {
+// Any node with a unique ID can be referenced in logic by that id.
+// If an ID isn't unique, then we use the full element path.
+export function assignUniqueIds(converted: ConvertedNode[]) {
+  const getShortId = (node: ConvertedNode): string =>
+    camelCase(node.path[node.path.length - 1]);
+
+  const names = converted.map(getShortId);
+
+  converted.forEach((node) => {
+    const name = getShortId(node);
+
+    // Only use this short name if it's unique
+    if (names.filter((x) => x === name).length == 1) {
+      node.element.id = name;
+    } else {
+      node.element.id = node.path.join(".");
+    }
+  });
+
+  return converted;
+}
+
+export function convertRoot(node: SVGRoot): SVG {
   const { viewBox } = node.attributes;
   const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
-  const element = svg(rect(vx, vy, vw, vh));
+  const rootElement = svg(rect(vx, vy, vw, vh));
 
-  element.data.children = convertNodes(node.children, [], {});
+  const convertedNodes = convertNodes(node.children, [], {});
 
-  return element;
+  assignUniqueIds(convertedNodes);
+
+  rootElement.data.children = convertedNodes.map((node) => node.element);
+
+  return rootElement;
 }

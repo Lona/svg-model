@@ -8,9 +8,10 @@ const paths = {
 
 module.exports = [
   {
-    mode: "production",
+    mode: "development",
     entry: join(paths.lib, "index.js"),
     target: "node",
+    devtool: "inline-source-map",
     output: {
       path: paths.dist,
       filename: "svg-model.umd.js",
@@ -23,7 +24,7 @@ module.exports = [
     },
     plugins: [
       new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env.NODE_ENV": JSON.stringify("development"),
       }),
     ],
     module: {
@@ -34,7 +35,7 @@ module.exports = [
           use: {
             loader: "babel-loader",
             options: {
-              plugins: ["@babel/plugin-proposal-object-rest-spread"],
+              presets: ["@babel/preset-env"],
             },
           },
         },
