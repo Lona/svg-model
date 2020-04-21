@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
-const convert = require("../src/index");
+// const convert = require("../src/index");
+const convert = require("../lib/index");
 
 describe("index", () => {
   beforeEach(() => {});
 
-  fs.readdirSync(path.join(__dirname, "../test/assets")).forEach(filepath => {
+  fs.readdirSync(path.join(__dirname, "../test/assets")).forEach((filepath) => {
     it(`converts ${filepath}`, () => {
       const svgString = fs.readFileSync(
         path.join(__dirname, "../test/assets", filepath),

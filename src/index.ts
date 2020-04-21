@@ -1,3 +1,8 @@
+import { Point, Size, Rect, PointString } from "./types/primitives";
+import * as Commands from "./types/commands";
+import * as Elements from "./types/elements";
+import { SVGAttributes, SVGNode } from "./types/svg";
+
 const { parseSync } = require("svgson");
 const svgpath = require("svgpath");
 const transformParser = require("svg-transform-parser").parse;
@@ -8,28 +13,33 @@ const upperFirst = require("lodash.upperfirst");
 const BEZIER_CIRCLE_CONTROL = 0.552284749831;
 
 const Path = {
-  lerp: (v0, v1, t) => {
+  lerp: (v0: number, v1: number, t: number): number => {
     return (1 - t) * v0 + t * v1;
   },
 
-  fromPoints: (pointsString) => {
-    const points = pointsString.split(" ").reduce((acc, item, index) => {
-      if (index % 2 === 0) {
-        return [...acc, { x: item }];
-      } else {
-        acc[acc.length - 1].y = item;
-        return acc;
-      }
-    }, []);
+  fromPoints: (pointsString: string): string => {
+    const points: PointString[] = pointsString
+      .split(" ")
+      .reduce((acc: PointString[], item: string, index: number) => {
+        if (index % 2 === 0) {
+          return [...acc, { x: item }];
+        } else {
+          acc[acc.length - 1].y = item;
+          return acc;
+        }
+      }, []);
 
     let path = points
-      .map((point, index) => `${index === 0 ? "M" : "L"}${point.x} ${point.y}`)
+      .map(
+        (point: PointString, index: number) =>
+          `${index === 0 ? "M" : "L"}${point.x} ${point.y}`
+      )
       .join("");
 
     return path;
   },
 
-  circularCurveXFirst: (from, to) => {
+  circularCurveXFirst: (from: Point, to: Point): string => {
     const control = BEZIER_CIRCLE_CONTROL;
     const control1 = `${Path.lerp(from.x, to.x, control)} ${from.y}`;
     const control2 = `${to.x} ${Path.lerp(to.y, from.y, control)}`;
@@ -37,7 +47,7 @@ const Path = {
     return `C${control1} ${control2} ${endPoint}`;
   },
 
-  circularCurveYFirst(from, to) {
+  circularCurveYFirst(from: Point, to: Point): string {
     const control = BEZIER_CIRCLE_CONTROL;
     const control1 = `${from.x} ${Path.lerp(from.y, to.y, control)}`;
     const control2 = `${Path.lerp(to.x, from.x, control)} ${to.y}`;
@@ -45,7 +55,14 @@ const Path = {
     return `C${control1} ${control2} ${endPoint}`;
   },
 
-  generateRect: (x, y, width, height, rx, ry) => {
+  generateRect: (
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    rx: number,
+    ry: number
+  ): string => {
     const path = [
       `M${x + rx} ${y}`,
       `L${x + width - rx} ${y}`,
@@ -72,7 +89,7 @@ const Path = {
   },
 };
 
-function applyOpacity(color, opacity) {
+function applyOpacity(color: string, opacity: number): string {
   const [r, g, b, a] = parseCSSColor(color);
 
   if (opacity >= 1) return color;
@@ -81,9 +98,20 @@ function applyOpacity(color, opacity) {
 }
 
 const Builders = {
-  point: (x, y) => ({ x, y }),
-  rect: (x, y, width, height) => ({ x, y, width, height }),
-  style: (fill, stroke, strokeWidth, strokeLineCap, strokeOpacity) => ({
+  point: (x: number, y: number): Point => ({ x, y }),
+  rect: (x: number, y: number, width: number, height: number): Rect => ({
+    x,
+    y,
+    width,
+    height,
+  }),
+  style: (
+    fill: string | undefined,
+    stroke: string | undefined,
+    strokeWidth: number | undefined,
+    strokeLineCap: string | undefined,
+    strokeOpacity: number
+  ) => ({
     ...(fill !== "none" && { fill: fill || "black" }),
     ...(stroke &&
       stroke !== "none" && { stroke: applyOpacity(stroke, strokeOpacity) }),
@@ -91,7 +119,11 @@ const Builders = {
     strokeLineCap: strokeLineCap || "butt",
   }),
 
-  circle: (style, center, radius) => ({
+  circle: (
+    style: Elements.Style,
+    center: Point,
+    radius: number
+  ): Elements.Circle => ({
     type: "circle",
     data: {
       params: {
@@ -101,7 +133,10 @@ const Builders = {
       },
     },
   }),
-  path: (style, commands) => ({
+  path: (
+    style: Elements.Style,
+    commands: Commands.Command[]
+  ): Elements.Path => ({
     type: "path",
     data: {
       params: {
@@ -110,9 +145,10 @@ const Builders = {
       },
     },
   }),
-  svg: (viewBox) => ({
+  svg: (viewBox: Rect): Elements.SVG => ({
     type: "svg",
     data: {
+      elementPath: [],
       params: {
         ...(viewBox && { viewBox }),
       },
@@ -120,16 +156,20 @@ const Builders = {
   }),
 
   Path: {
-    move: (to) => ({ type: "move", data: { to } }),
-    line: (to) => ({ type: "line", data: { to } }),
-    quadCurve: (to, controlPoint) => ({
+    move: (to: Point): Commands.Move => ({ type: "move", data: { to } }),
+    line: (to: Point): Commands.Line => ({ type: "line", data: { to } }),
+    quadCurve: (to: Point, controlPoint: Point): Commands.QuadCurve => ({
       type: "quadCurve",
       data: {
         to,
         controlPoint,
       },
     }),
-    cubicCurve: (to, controlPoint1, controlPoint2) => ({
+    cubicCurve: (
+      to: Point,
+      controlPoint1: Point,
+      controlPoint2: Point
+    ): Commands.CubicCurve => ({
       type: "cubicCurve",
       data: {
         to,
@@ -137,12 +177,18 @@ const Builders = {
         controlPoint2,
       },
     }),
-    close: () => ({ type: "close" }),
+    close: (): Commands.Close => ({ type: "close" }),
   },
 };
 
-function convertPathCommand(segment, index, x, y) {
-  const [command, ...parameters] = segment;
+function convertPathCommand(
+  segment: any[],
+  index: number,
+  x: number,
+  y: number
+) {
+  const command: string = segment[0];
+  const parameters: number[] = segment.slice(1);
 
   switch (command) {
     case "M": {
@@ -187,7 +233,7 @@ function convertPathCommand(segment, index, x, y) {
   }
 }
 
-function convertPath(string, transform) {
+function convertPath(string: string, transform: string) {
   const parsed = svgpath(string);
 
   parsed.unarc();
@@ -198,11 +244,10 @@ function convertPath(string, transform) {
     parsed.transform(transform);
   }
 
-  const drawCommands = [];
+  const drawCommands: Commands.Command[] = [];
 
-  parsed.iterate((...args) => {
-    console.log(args);
-    const command = convertPathCommand(...args);
+  parsed.iterate((segment: any[], index: number, x: number, y: number) => {
+    const command = convertPathCommand(segment, index, x, y);
 
     if (!command) return;
 
@@ -212,7 +257,7 @@ function convertPath(string, transform) {
   return drawCommands;
 }
 
-function numberValue(value, defaultValue = 0) {
+function numberValue(value: number | string | null, defaultValue = 0) {
   if (typeof value === "string") {
     return parseFloat(value);
   } else if (value == null) {
@@ -221,15 +266,19 @@ function numberValue(value, defaultValue = 0) {
   return value;
 }
 
-function joinTransforms(...transforms) {
+function joinTransforms(...transforms: string[]) {
   return transforms.filter((x) => !!x).join(" ");
 }
 
 // Convert all svg nodes into a simplified JSON structure.
 // Currently, all drawing nodes (rect, circle, polyline) are converted
 // to <path> nodes for simpler rendering.
-function convertChild(child, index, context) {
-  const { type, name, attributes, children } = child;
+function convertChild(
+  child: SVGNode,
+  elementPath: string[],
+  context: SVGAttributes
+): Elements.Element | null {
+  const { type, name, attributes } = child;
 
   switch (name) {
     case "title":
@@ -271,7 +320,7 @@ function convertChild(child, index, context) {
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        index,
+        elementPath,
         context
       );
     }
@@ -282,7 +331,7 @@ function convertChild(child, index, context) {
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        index,
+        elementPath,
         context
       );
     }
@@ -297,7 +346,7 @@ function convertChild(child, index, context) {
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        index,
+        elementPath,
         context
       );
     }
@@ -330,7 +379,7 @@ function convertChild(child, index, context) {
 
       return convertChild(
         { name: "path", attributes: { d: path, ...attributes } },
-        index,
+        elementPath,
         context
       );
     }
@@ -340,38 +389,54 @@ function convertChild(child, index, context) {
       return {
         type: "group",
         context: { ...context, ...attributes, transform },
+        data: { elementPath: [] },
       };
     }
     default:
       console.log("Unused svg", type, name);
-      return;
+      return null;
   }
 }
 
 // Convert all children, filtering out groups and the "element path", which
 // is ultimately used as the variable name, to each node
-function convertChildren(children, parentElementPath, context) {
-  return children.reduce((acc, child, index) => {
-    const name =
-      (child.attributes && upperFirst(camelCase(child.attributes.id))) ||
-      child.name + index.toString();
+function convertChildren(
+  children: SVGNode[],
+  parentElementPath: string[],
+  context: SVGAttributes
+): Elements.Element[] {
+  return children.reduce(
+    (acc: Elements.Element[], child: SVGNode, index: number) => {
+      const name: string =
+        (child.attributes && upperFirst(camelCase(child.attributes.id))) ||
+        child.name + index.toString();
 
-    const converted = convertNode(child, [...parentElementPath, name], context);
+      const converted = convertNode(
+        child,
+        [...parentElementPath, name],
+        context
+      );
 
-    if (!converted) return acc;
+      if (!converted) return acc;
 
-    if (converted.type === "group") {
-      return [...acc, ...converted.data.children];
-    }
+      if (converted.type === "group") {
+        return [...acc, ...converted.data.children!];
+      }
 
-    return [...acc, converted];
-  }, []);
+      return [...acc, converted];
+    },
+    []
+  );
 }
 
-function convertNode(node, elementPath = [], context = {}) {
+function convertNode(
+  node: SVGNode,
+  elementPath: string[] = [],
+  context: SVGAttributes = {} as SVGAttributes
+): Elements.Element | null {
   const { children } = node;
 
-  const converted = convertChild(node, elementPath, context);
+  const converted = convertChild(node, elementPath, context as SVGAttributes);
 
   if (!converted) return null;
 
@@ -383,7 +448,7 @@ function convertNode(node, elementPath = [], context = {}) {
         children: convertChildren(
           children,
           elementPath,
-          converted.context || context
+          converted.type === "group" ? converted.context : context
         ),
       }),
     },
@@ -392,12 +457,12 @@ function convertNode(node, elementPath = [], context = {}) {
 
 // Any node with a unique ID can be referenced in logic by that id.
 // If an ID isn't unique, then we use the full element path.
-function simplifyNames(node) {
-  function flatten(node, acc = []) {
+function simplifyNames(node: Elements.Element) {
+  function flatten(node: Elements.Element, acc: Elements.Element[] = []) {
     acc.push(node);
 
-    if (node.data.children) {
-      node.data.children.forEach((child) => flatten(child, acc));
+    if ("children" in node.data) {
+      node.data.children!.forEach((child) => flatten(child, acc));
     }
 
     return acc;
@@ -408,14 +473,14 @@ function simplifyNames(node) {
   const names = nodes
     .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
     .map((node) =>
-      camelCase(node.data.elementPath[node.data.elementPath.length - 1])
+      camelCase(node.data.elementPath![node.data.elementPath!.length - 1])
     );
 
   nodes
     .filter((node) => node.data.elementPath && node.data.elementPath.length > 0)
     .forEach((node) => {
       const name = camelCase(
-        node.data.elementPath[node.data.elementPath.length - 1]
+        node.data.elementPath![node.data.elementPath!.length - 1]
       );
 
       if (names.filter((x) => x === name).length == 1) {
@@ -426,10 +491,10 @@ function simplifyNames(node) {
   return node;
 }
 
-function convert(data) {
+function convert(data: string) {
   const parsed = parseSync(data);
   let node = convertNode(parsed);
-  node = simplifyNames(node);
+  node = simplifyNames(node!);
   return node;
 }
 
