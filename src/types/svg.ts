@@ -73,27 +73,20 @@ export type SVGGroup = {
   type: "element";
   name: "g";
   attributes: SVGBaseAttributes;
-  children: SVGNode[];
+  children: SVGChildNode[];
 };
 
 export type SVGRoot = {
   type: "element";
   name: "svg";
   attributes: SVGRootAttributes;
-  children: SVGNode[];
+  children: SVGChildNode[];
 };
 
-export type SVGTitle = {
+export type SVGUnknown = {
   type: "element";
-  name: "title";
+  name: "title" | "desc";
 };
-
-export type SVGDesc = {
-  type: "element";
-  name: "desc";
-};
-
-export type SVGParentNode = SVGRoot | SVGGroup;
 
 export type SVGDrawableNode =
   | SVGPath
@@ -102,4 +95,8 @@ export type SVGDrawableNode =
   | SVGCircle
   | SVGRect;
 
-export type SVGNode = SVGParentNode | SVGDrawableNode | SVGTitle | SVGDesc;
+export type SVGChildNode = SVGGroup | SVGDrawableNode | SVGUnknown;
+
+export type SVGParentNode = SVGRoot | SVGGroup;
+
+export type SVGNode = SVGParentNode | SVGDrawableNode | SVGUnknown;

@@ -36,7 +36,7 @@ export type Group = {
   type: "group";
   path: string[];
   data: {
-    children: Element[];
+    children: ChildElement[];
   };
 };
 
@@ -44,11 +44,13 @@ export type SVG = {
   type: "svg";
   path: string[];
   data: {
-    children: Element[];
+    children: ChildElement[];
     params: {
       viewBox?: Rect;
     };
   };
 };
+
+export type ChildElement = Circle | Path | Group;
 
 export type Element = SVG | Circle | Path | Group;

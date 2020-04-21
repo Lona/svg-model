@@ -1,12 +1,12 @@
-import { convert as convertNode } from "./node";
+import { convertRoot } from "./node";
 import { assignUniqueNames } from "./names";
-import { SVGNode } from "./types/svg";
+import { SVGRoot } from "./types/svg";
 
-const parseSync: (string: string) => SVGNode = require("svgson").parseSync;
+const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
 
 export default function convert(data: string) {
   const parsed = parseSync(data);
-  let node = convertNode(parsed);
+  let node = convertRoot(parsed);
   node = assignUniqueNames(node!);
   return node;
 }
