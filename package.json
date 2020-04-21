@@ -11,8 +11,10 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest:watch",
-    "build": "rm -rf ./lib && tsc --declaration",
-    "build:watch": "rm -rf ./lib && tsc --watch --declaration",
+    "build": "npm run build:node && npm run build:web",
+    "build:web": "webpack",
+    "build:node": "rm -rf ./lib && tsc --declaration",
+    "build:node:watch": "rm -rf ./lib && tsc --watch --declaration",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -30,7 +32,7 @@
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.1",
     "babel-loader": "^8.0.6",
-    "jest": "^24.9.0",
+    "jest": "^25.4.0",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3",

@@ -148,6 +148,7 @@ const Builders = {
   svg: (viewBox: Rect): Elements.SVG => ({
     type: "svg",
     data: {
+      children: [],
       elementPath: [],
       params: {
         ...(viewBox && { viewBox }),
@@ -389,7 +390,7 @@ function convertChild(
       return {
         type: "group",
         context: { ...context, ...attributes, transform },
-        data: { elementPath: [] },
+        data: { children: [], elementPath: [] },
       };
     }
     default:
@@ -420,7 +421,7 @@ function convertChildren(
       if (!converted) return acc;
 
       if (converted.type === "group") {
-        return [...acc, ...converted.data.children!];
+        return [...acc, ...converted.data.children];
       }
 
       return [...acc, converted];
@@ -462,7 +463,7 @@ function simplifyNames(node: Elements.Element) {
     acc.push(node);
 
     if ("children" in node.data) {
-      node.data.children!.forEach((child) => flatten(child, acc));
+      node.data.children.forEach((child) => flatten(child, acc));
     }
 
     return acc;

@@ -3,13 +3,13 @@ const webpack = require("webpack");
 
 const paths = {
   dist: resolve(__dirname, "dist"),
-  src: resolve(__dirname, "src")
+  lib: resolve(__dirname, "lib"),
 };
 
 module.exports = [
   {
     mode: "production",
-    entry: join(paths.src, "index.js"),
+    entry: join(paths.lib, "index.js"),
     target: "node",
     output: {
       path: paths.dist,
@@ -17,14 +17,14 @@ module.exports = [
       library: {
         root: "svgModel",
         amd: "svg-model",
-        commonjs: "svg-model"
+        commonjs: "svg-model",
       },
-      libraryTarget: "umd"
+      libraryTarget: "umd",
     },
     plugins: [
       new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify("production")
-      })
+        "process.env.NODE_ENV": JSON.stringify("production"),
+      }),
     ],
     module: {
       rules: [
@@ -34,11 +34,11 @@ module.exports = [
           use: {
             loader: "babel-loader",
             options: {
-              plugins: ["@babel/plugin-proposal-object-rest-spread"]
-            }
-          }
-        }
-      ]
-    }
-  }
+              plugins: ["@babel/plugin-proposal-object-rest-spread"],
+            },
+          },
+        },
+      ],
+    },
+  },
 ];

@@ -38,7 +38,7 @@ export type Group = {
   context: SVGAttributes;
   data: {
     elementPath?: string[];
-    children?: Element[];
+    children: Element[];
   };
 };
 
@@ -46,7 +46,7 @@ export type SVG = {
   type: "svg";
   data: {
     elementPath?: string[];
-    // children: Element[];
+    children: Element[];
     params: {
       viewBox?: Rect;
     };
