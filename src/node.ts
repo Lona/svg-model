@@ -63,8 +63,8 @@ function getContext(
 // Convert all svg nodes into a simplified JSON structure.
 // Currently, all drawing nodes (rect, circle, polyline) are converted
 // to <path> nodes for simpler rendering.
-function convertElement(
-  child: SVGGroup | SVGDrawableNode | SVGUnknown,
+function convertDrawableNode(
+  child: SVGDrawableNode | SVGUnknown,
   context: SVGBaseAttributes
 ): ChildElement | null {
   switch (child.name) {
@@ -86,13 +86,6 @@ function convertElement(
       const { x, y, width, height, rx, ry, ...rest } = child.attributes;
       const path = elementToPath(child);
       return createPathElement({ d: path, ...rest }, context);
-    }
-    case "g": {
-      return {
-        type: "group",
-        path: [],
-        data: { children: [] },
-      };
     }
     default:
       console.log("Unused svg", child["type"], child["name"]);
@@ -119,7 +112,7 @@ function generateName(
 }
 
 /**
- * Convert all children, filtering out groups and the "element path",
+ * Convert all children, filtering out groups and adding the "element path",
  * which is ultimately used as the variable name, to each node
  */
 function convertNodes(
@@ -130,46 +123,28 @@ function convertNodes(
   return nodes.reduce(
     (acc: ChildElement[], node: SVGChildNode, index: number) => {
       const attributes = "attributes" in node ? node.attributes : null;
-
       const name = generateName(attributes, node.name, index);
+      const path = [...parentPath, name];
 
-      const element = convert(node, [...parentPath, name], context);
+      if (node.name === "g") {
+        const childContext = getContext(node, context);
 
-      if (!element) {
+        return [...acc, ...convertNodes(node.children, path, childContext)];
+      } else if (node.name === "desc" || node.name === "title") {
         return acc;
-      } else if (element.type === "group") {
-        return [...acc, ...element.data.children];
       } else {
-        return [...acc, element];
+        const element = convertDrawableNode(node, context);
+
+        if (element) {
+          element.path = path;
+          return [...acc, element];
+        } else {
+          return acc;
+        }
       }
     },
     []
   );
-}
-
-export function convert(
-  node: SVGChildNode,
-  path: string[] = [],
-  context: SVGBaseAttributes = {} as SVGBaseAttributes
-): ChildElement | null {
-  if (node.name === "desc" || node.name === "title") return null;
-
-  const element = convertElement(node, context);
-
-  if (!element) return null;
-
-  element.path = path;
-
-  if (element.type === "group") {
-    const childContext =
-      node.name === "g" ? getContext(node, context) : context;
-
-    const children = "children" in node ? node.children : [];
-
-    element.data.children = convertNodes(children, path, childContext);
-  }
-
-  return element;
 }
 
 export function convertRoot(node: SVGRoot): Element | null {

@@ -9,18 +9,6 @@ export type Style = {
   strokeOpacity?: number;
 };
 
-export type Circle = {
-  type: "circle";
-  path: string[];
-  data: {
-    params: {
-      center: Point;
-      radius: number;
-      style: Style;
-    };
-  };
-};
-
 export type Path = {
   type: "path";
   path: string[];
@@ -29,14 +17,6 @@ export type Path = {
       commands: Commands.Command[];
       style: Style;
     };
-  };
-};
-
-export type Group = {
-  type: "group";
-  path: string[];
-  data: {
-    children: ChildElement[];
   };
 };
 
@@ -51,6 +31,6 @@ export type SVG = {
   };
 };
 
-export type ChildElement = Circle | Path | Group;
+export type ChildElement = Path;
 
-export type Element = SVG | Circle | Path | Group;
+export type Element = SVG | Path;
