@@ -1,4 +1,4 @@
-import { Point, Size, Rect, PointString } from "./primitives";
+import { Rect } from "./primitives";
 import * as Commands from "./commands";
 
 export type Style = {
@@ -9,28 +9,30 @@ export type Style = {
   strokeOpacity?: number;
 };
 
+export type PathData = {
+  params: {
+    commands: Commands.Command[];
+    style: Style;
+  };
+};
+
 export type Path = {
   type: "path";
   id: string;
-  data: {
-    params: {
-      commands: Commands.Command[];
-      style: Style;
-    };
+  data: PathData;
+};
+
+export type SVGData = {
+  children: ChildElement[];
+  params: {
+    viewBox?: Rect;
   };
 };
 
 export type SVG = {
   type: "svg";
   id: string;
-  data: {
-    children: ChildElement[];
-    params: {
-      viewBox?: Rect;
-    };
-  };
+  data: SVGData;
 };
 
 export type ChildElement = Path;
-
-export type Element = SVG | Path;

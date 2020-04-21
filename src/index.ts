@@ -7,3 +7,7 @@ export default function convert(data: string) {
   const parsed = parseSync(data);
   return convertRoot(parsed);
 }
+
+export * from "./types/elements";
+export * from "./types/commands";
+export * from "./types/primitives";
