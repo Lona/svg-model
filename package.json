@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "csscolorparser": "^1.0.3",
+    "element-to-path": "^1.2.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "svg-transform-parser": "^0.0.1",
