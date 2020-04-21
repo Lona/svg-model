@@ -12,4 +12,4 @@ const svgString = fs.readFileSync(filename, "utf8");
 
 const model = convert(svgString);
 
-console.log(model);
+console.log(JSON.stringify(model, null, 2));
