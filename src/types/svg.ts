@@ -1,6 +1,7 @@
 export type SVGBaseAttributes = {
   id?: string;
   fill?: string;
+  "fill-opacity"?: number;
   stroke?: string;
   "stroke-opacity"?: number;
   "stroke-width"?: string;

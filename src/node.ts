@@ -28,20 +28,22 @@ function createPathElement(
 
   const {
     fill,
+    ["fill-opacity"]: fillOpacity,
     stroke,
-    ["stroke-opacity"]: strokeOpacity = 1,
+    ["stroke-opacity"]: strokeOpacity,
     ["stroke-width"]: strokeWidth,
     ["stroke-linecap"]: strokeLineCap,
   } = { ...context, ...attributes };
 
   return path(
-    style(
+    style({
       fill,
+      fillOpacity,
       stroke,
-      strokeWidth != null ? parseFloat(strokeWidth) : undefined,
+      strokeWidth: strokeWidth != null ? parseFloat(strokeWidth) : undefined,
       strokeLineCap,
-      strokeOpacity
-    ),
+      strokeOpacity,
+    }),
     convertPath(d, joinTransforms(context.transform, attributes.transform))
   );
 }

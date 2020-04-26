@@ -1,12 +1,31 @@
 import { Rect } from "./primitives";
 import * as Commands from "./commands";
 
+export type LineCap = "butt" | "round" | "square";
+
+/**
+ * We use different defaults in our model than the SVG spec.
+ *
+ * The SVG defaults are convenient for writing SVG files, but less convenient for drawing.
+ * We get rid of the value 'none', instead using undefined (or no key).
+ *
+ * Model defaults:
+ * - fill: undefined
+ * - stroke: undefined
+ * - strokeWidth: 0
+ * - strokeLineCap: 'butt'
+ *
+ * SVG defaults:
+ * - fill: 'black'
+ * - stroke: 'none'
+ * - strokeWidth: 1
+ * - strokeLineCap: 'butt'
+ */
 export type Style = {
   fill?: string;
   stroke?: string;
-  strokeWidth?: number;
-  strokeLineCap?: string;
-  strokeOpacity?: number;
+  strokeWidth: number;
+  strokeLineCap: LineCap;
 };
 
 export type PathData = {
