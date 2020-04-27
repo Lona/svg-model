@@ -128,7 +128,7 @@ function convertDrawableNode(
       const definition = definitions[ref];
 
       if (!definition) {
-        console.log("<use> tag must have either href or xlink:href");
+        console.log(`Could not find element referenced by <use> tag: "${ref}"`);
         return null;
       }
 
