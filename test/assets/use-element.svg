@@ -1,0 +1,8 @@
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <circle id="circ" fill="#00C121" cx="12" cy="12" r="12"></circle>
+  </defs>
+  <g id="container" stroke="none" stroke-width="1" fill="none">
+    <use href="#circ" stroke="green" fill="red" stroke-width="2"></use>
+  </g>
+</svg>

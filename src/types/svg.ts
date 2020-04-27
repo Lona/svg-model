@@ -36,6 +36,11 @@ export type SVGPathAttributes = SVGBaseAttributes & {
   d: string;
 };
 
+export type SVGUseAttributes = SVGBaseAttributes & {
+  "xlink:href"?: string;
+  href?: string;
+};
+
 export type SVGRootAttributes = SVGBaseAttributes & {
   viewBox: string;
 };
@@ -70,6 +75,12 @@ export type SVGPath = {
   attributes: SVGPathAttributes;
 };
 
+export type SVGUse = {
+  type: "element";
+  name: "use";
+  attributes: SVGUseAttributes;
+};
+
 export type SVGGroup = {
   type: "element";
   name: "g";
@@ -77,11 +88,17 @@ export type SVGGroup = {
   children: SVGChildNode[];
 };
 
+export type SVGDefs = {
+  type: "element";
+  name: "defs";
+  children: SVGChildNode[];
+};
+
 export type SVGRoot = {
   type: "element";
   name: "svg";
   attributes: SVGRootAttributes;
-  children: SVGChildNode[];
+  children: (SVGChildNode | SVGDefs)[];
 };
 
 export type SVGUnknown = {
@@ -89,12 +106,14 @@ export type SVGUnknown = {
   name: "title" | "desc";
 };
 
-export type SVGDrawableNode =
+export type SVGPathConvertibleNode =
   | SVGPath
   | SVGPolyline
   | SVGPolygon
   | SVGCircle
   | SVGRect;
+
+export type SVGDrawableNode = SVGPathConvertibleNode | SVGUse;
 
 export type SVGChildNode = SVGGroup | SVGDrawableNode | SVGUnknown;
 

@@ -12,12 +12,60 @@ import {
   SVGRoot,
   SVGUnknown,
   SVGChildNode,
+  SVGDefs,
+  SVGPath,
+  SVGPathConvertibleNode,
 } from "./types/svg";
 import { convert as convertPath } from "./path";
 import elementToPath from "./element-to-path";
 
+type SharedDefinitions = { [key: string]: SVGPathConvertibleNode };
+
 function joinTransforms(...transforms: (string | undefined)[]) {
   return transforms.filter((x) => !!x).join(" ");
+}
+
+function mergeContexts<T extends SVGBaseAttributes>(
+  parentContext: SVGBaseAttributes,
+  context: T
+): T {
+  return {
+    ...parentContext,
+    ...context,
+    transform: joinTransforms(context.transform, parentContext.transform),
+  };
+}
+
+function convertToSVGPath(child: SVGPathConvertibleNode): SVGPath {
+  const createPathNode = (attributes: SVGPathAttributes): SVGPath => {
+    return {
+      type: "element",
+      name: "path",
+      attributes,
+    };
+  };
+
+  switch (child.name) {
+    case "path": {
+      return createPathNode(child.attributes);
+    }
+    case "polyline":
+    case "polygon": {
+      const { points, ...rest } = child.attributes;
+      const path = elementToPath(child);
+      return createPathNode({ d: path, ...rest });
+    }
+    case "circle": {
+      const { cx, cy, r, ...rest } = child.attributes;
+      const path = elementToPath(child);
+      return createPathNode({ d: path, ...rest });
+    }
+    case "rect": {
+      const { x, y, width, height, rx, ry, ...rest } = child.attributes;
+      const path = elementToPath(child);
+      return createPathNode({ d: path, ...rest });
+    }
+  }
 }
 
 function createPathElement(
@@ -48,43 +96,47 @@ function createPathElement(
   );
 }
 
-function getContext(
-  node: SVGGroup,
-  context: SVGBaseAttributes
-): SVGBaseAttributes {
-  return {
-    ...context,
-    ...node.attributes,
-    transform: joinTransforms(context.transform, node.attributes.transform),
-  };
-}
-
 // Convert all svg nodes into a simplified JSON structure.
 // Currently, all drawing nodes (rect, circle, polyline) are converted
 // to <path> nodes for simpler rendering.
 function convertDrawableNode(
   child: SVGDrawableNode | SVGUnknown,
-  context: SVGBaseAttributes
+  context: SVGBaseAttributes,
+  definitions: SharedDefinitions
 ): ChildElement | null {
   switch (child.name) {
-    case "path": {
-      return createPathElement(child.attributes, context);
-    }
+    case "path":
     case "polyline":
-    case "polygon": {
-      const { points, ...rest } = child.attributes;
-      const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
-    }
-    case "circle": {
-      const { cx, cy, r, ...rest } = child.attributes;
-      const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
-    }
+    case "polygon":
+    case "circle":
     case "rect": {
-      const { x, y, width, height, rx, ry, ...rest } = child.attributes;
-      const path = elementToPath(child);
-      return createPathElement({ d: path, ...rest }, context);
+      const pathNode = convertToSVGPath(child);
+      return createPathElement(pathNode.attributes, context);
+    }
+    case "use": {
+      // Only a handful of attributes (x, y, width, height, href) will override those
+      // on the original element definition. All others are applied only if the original
+      // element doesn't define them.
+      const { href, "xlink:href": xlinkHref, ...rest } = child.attributes;
+      const ref = (href ?? xlinkHref)?.slice(1);
+
+      if (!ref) {
+        console.log("<use> tag must have either href or xlink:href");
+        return null;
+      }
+
+      const definition = definitions[ref];
+
+      if (!definition) {
+        console.log("<use> tag must have either href or xlink:href");
+        return null;
+      }
+
+      const pathNode = convertToSVGPath(definition);
+      return createPathElement(
+        pathNode.attributes,
+        mergeContexts(context, rest)
+      );
     }
     default:
       console.log("Unused svg", child["type"], child["name"]);
@@ -119,7 +171,8 @@ type ConvertedNode = { element: ChildElement; path: string[] };
 function convertNodes(
   nodes: SVGChildNode[],
   parentPath: string[],
-  context: SVGBaseAttributes
+  context: SVGBaseAttributes,
+  definitions: SharedDefinitions
 ): ConvertedNode[] {
   return nodes.reduce(
     (acc: ConvertedNode[], node: SVGChildNode, index: number) => {
@@ -128,13 +181,16 @@ function convertNodes(
       const path = [...parentPath, name];
 
       if (node.name === "g") {
-        const childContext = getContext(node, context);
+        const childContext = mergeContexts(node.attributes, context);
 
-        return [...acc, ...convertNodes(node.children, path, childContext)];
+        return [
+          ...acc,
+          ...convertNodes(node.children, path, childContext, definitions),
+        ];
       } else if (node.name === "desc" || node.name === "title") {
         return acc;
       } else {
-        const element = convertDrawableNode(node, context);
+        const element = convertDrawableNode(node, context, definitions);
 
         if (element) {
           return [...acc, { element, path }];
@@ -169,12 +225,49 @@ export function assignUniqueIds(converted: ConvertedNode[]) {
   return converted;
 }
 
+// TODO: Handle "g" definitions
+export function getDefs(defsNode: SVGDefs): SharedDefinitions {
+  const entries: [string, SVGPathConvertibleNode][] = defsNode.children.flatMap(
+    (child) => {
+      if (
+        (child.name === "rect" ||
+          child.name === "circle" ||
+          child.name === "polyline" ||
+          child.name === "polygon" ||
+          child.name === "path") &&
+        child.attributes.id
+      ) {
+        return [[child.attributes.id, child]];
+      }
+      return [];
+    }
+  );
+
+  const map = Object.fromEntries(entries);
+
+  if (Object.keys(map).length !== entries.length) {
+    console.log("SVG def id duplicated - undefined behavior");
+  }
+
+  return map;
+}
+
 export function convertRoot(node: SVGRoot): SVG {
   const { viewBox } = node.attributes;
   const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
   const rootElement = svg(rect(vx, vy, vw, vh));
 
-  const convertedNodes = convertNodes(node.children, [], {});
+  const children = node.children.filter(
+    (child) => child.name !== "defs"
+  ) as SVGChildNode[];
+
+  const defsNode = node.children.find((child) => child.name === "defs") as
+    | SVGDefs
+    | undefined;
+
+  const definitions = defsNode ? getDefs(defsNode) : {};
+
+  const convertedNodes = convertNodes(children, [], {}, definitions);
 
   assignUniqueIds(convertedNodes);
 
