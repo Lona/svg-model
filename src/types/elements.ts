@@ -41,17 +41,11 @@ export type Path = {
   data: PathData;
 };
 
-export type SVGData = {
+export type SVG = {
   children: ChildElement[];
   params: {
     viewBox?: Rect;
   };
-};
-
-export type SVG = {
-  type: "svg";
-  id: string;
-  data: SVGData;
 };
 
 export type ChildElement = Path;

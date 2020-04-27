@@ -249,7 +249,7 @@ export function convertRoot(root: SVGRoot): SVG {
 
   assignUniqueIds(convertedNodes);
 
-  rootElement.data.children = convertedNodes.map((node) => node.element);
+  rootElement.children = convertedNodes.map((node) => node.element);
 
   return rootElement;
 }

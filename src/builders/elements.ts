@@ -71,12 +71,8 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
 });
 
 export const svg = (viewBox: Rect): SVG => ({
-  type: "svg",
-  id: "",
-  data: {
-    children: [],
-    params: {
-      ...(viewBox && { viewBox }),
-    },
+  children: [],
+  params: {
+    ...(viewBox && { viewBox }),
   },
 });
