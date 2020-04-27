@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import convert from "../src/index";
+import { convert } from "../src/index";
 
 const names = fs.readdirSync(path.join(__dirname, "../test/assets"));
 
@@ -13,8 +13,8 @@ describe("index", () => {
   beforeEach(() => {});
 
   assets.forEach((asset: { name: string; data: string }) => {
-    it(`converts ${asset.name}`, () => {
-      const model = convert(asset.data);
+    it(`converts ${asset.name}`, async () => {
+      const model = await convert(asset.data);
       return expect(model).toMatchSnapshot();
     });
   });

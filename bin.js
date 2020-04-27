@@ -8,8 +8,12 @@ if (!filename) {
   process.exit(1);
 }
 
-const svgString = fs.readFileSync(filename, "utf8");
+async function main() {
+  const svgString = fs.readFileSync(filename, "utf8");
 
-const model = convert(svgString);
+  const model = await convert(svgString);
 
-console.log(JSON.stringify(model, null, 2));
+  console.log(JSON.stringify(model, null, 2));
+}
+
+main();
