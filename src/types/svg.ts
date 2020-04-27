@@ -115,6 +115,6 @@ export type SVGPathConvertibleNode =
 
 export type SVGDrawableNode = SVGPathConvertibleNode | SVGUse;
 
-export type SVGChildNode = SVGGroup | SVGDrawableNode | SVGUnknown;
+export type SVGChildNode = SVGDefs | SVGGroup | SVGDrawableNode | SVGUnknown;
 
-export type SVGNode = SVGRoot | SVGGroup | SVGDrawableNode | SVGUnknown;
+export type SVGNode = SVGRoot | SVGChildNode;

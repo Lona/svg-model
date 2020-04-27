@@ -15,11 +15,15 @@ import {
   SVGDefs,
   SVGPath,
   SVGPathConvertibleNode,
+  SVGNode,
 } from "./types/svg";
 import { convert as convertPath } from "./path";
 import elementToPath from "./element-to-path";
+import { getHrefNode } from "./traverse";
 
-type SharedDefinitions = { [key: string]: SVGPathConvertibleNode };
+type Helpers = {
+  getHrefNode: (id: string) => SVGPathConvertibleNode | undefined;
+};
 
 function joinTransforms(...transforms: (string | undefined)[]) {
   return transforms.filter((x) => !!x).join(" ");
@@ -102,7 +106,7 @@ function createPathElement(
 function convertDrawableNode(
   child: SVGDrawableNode | SVGUnknown,
   context: SVGBaseAttributes,
-  definitions: SharedDefinitions
+  definitions: Helpers
 ): ChildElement | null {
   switch (child.name) {
     case "path":
@@ -125,7 +129,7 @@ function convertDrawableNode(
         return null;
       }
 
-      const definition = definitions[ref];
+      const definition = definitions.getHrefNode(ref);
 
       if (!definition) {
         console.log(`Could not find element referenced by <use> tag: "${ref}"`);
@@ -172,7 +176,7 @@ function convertNodes(
   nodes: SVGChildNode[],
   parentPath: string[],
   context: SVGBaseAttributes,
-  definitions: SharedDefinitions
+  definitions: Helpers
 ): ConvertedNode[] {
   return nodes.reduce(
     (acc: ConvertedNode[], node: SVGChildNode, index: number) => {
@@ -187,7 +191,11 @@ function convertNodes(
           ...acc,
           ...convertNodes(node.children, path, childContext, definitions),
         ];
-      } else if (node.name === "desc" || node.name === "title") {
+      } else if (
+        node.name === "desc" ||
+        node.name === "title" ||
+        node.name === "defs"
+      ) {
         return acc;
       } else {
         const element = convertDrawableNode(node, context, definitions);
@@ -225,49 +233,19 @@ export function assignUniqueIds(converted: ConvertedNode[]) {
   return converted;
 }
 
-// TODO: Handle "g" definitions
-export function getDefs(defsNode: SVGDefs): SharedDefinitions {
-  const entries: [string, SVGPathConvertibleNode][] = defsNode.children.flatMap(
-    (child) => {
-      if (
-        (child.name === "rect" ||
-          child.name === "circle" ||
-          child.name === "polyline" ||
-          child.name === "polygon" ||
-          child.name === "path") &&
-        child.attributes.id
-      ) {
-        return [[child.attributes.id, child]];
-      }
-      return [];
-    }
-  );
-
-  const map = Object.fromEntries(entries);
-
-  if (Object.keys(map).length !== entries.length) {
-    console.log("SVG def id duplicated - undefined behavior");
-  }
-
-  return map;
-}
-
-export function convertRoot(node: SVGRoot): SVG {
-  const { viewBox } = node.attributes;
+export function convertRoot(root: SVGRoot): SVG {
+  const { viewBox } = root.attributes;
   const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
   const rootElement = svg(rect(vx, vy, vw, vh));
 
-  const children = node.children.filter(
-    (child) => child.name !== "defs"
-  ) as SVGChildNode[];
-
-  const defsNode = node.children.find((child) => child.name === "defs") as
-    | SVGDefs
-    | undefined;
-
-  const definitions = defsNode ? getDefs(defsNode) : {};
-
-  const convertedNodes = convertNodes(children, [], {}, definitions);
+  const convertedNodes = convertNodes(
+    root.children,
+    [],
+    {},
+    {
+      getHrefNode: getHrefNode.bind(null, root),
+    }
+  );
 
   assignUniqueIds(convertedNodes);
 

@@ -5,8 +5,8 @@ import { SVG } from "./types/elements";
 const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
 
 export default function convert(data: string): SVG {
-  const parsed = parseSync(data);
-  return convertRoot(parsed);
+  const root = parseSync(data);
+  return convertRoot(root);
 }
 
 export * from "./types/elements";
