@@ -3,6 +3,8 @@ import * as Commands from "./commands";
 
 export type LineCap = "butt" | "round" | "square";
 
+export type FillRule = "nonzero" | "evenodd";
+
 /**
  * We use different defaults in our model than the SVG spec.
  *
@@ -23,6 +25,7 @@ export type LineCap = "butt" | "round" | "square";
  */
 export type Style = {
   fill?: string;
+  fillRule: FillRule;
   stroke?: string;
   strokeWidth: number;
   strokeLineCap: LineCap;
@@ -45,6 +48,10 @@ export type SVG = {
   children: ChildElement[];
   params: {
     viewBox?: Rect;
+  };
+  metadata: {
+    unsupportedElements: string[];
+    unsupportedAttributes: string[];
   };
 };
 

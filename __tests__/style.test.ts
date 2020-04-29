@@ -2,10 +2,11 @@ import { style } from "../src/builders/elements";
 import { Style } from "../src";
 
 const svgDefaults: Style = {
+  fill: "black",
+  fillRule: "nonzero",
+  stroke: undefined,
   strokeWidth: 1,
   strokeLineCap: "butt",
-  fill: "black",
-  stroke: undefined,
 };
 
 describe("Style", () => {
@@ -19,6 +20,7 @@ describe("Style", () => {
     const result: Style = style({ fill: "none", stroke: "none" });
 
     return expect(result).toEqual({
+      fillRule: "nonzero",
       strokeWidth: 1,
       strokeLineCap: "butt",
     });

@@ -30,6 +30,7 @@ const validateLineCap = (lineCap: string): LineCap => {
 export const style = ({
   fill,
   fillOpacity,
+  fillRule,
   stroke,
   strokeWidth,
   strokeLineCap,
@@ -37,6 +38,7 @@ export const style = ({
 }: {
   fill?: string;
   fillOpacity?: number;
+  fillRule?: string;
   stroke?: string;
   strokeWidth?: number;
   strokeLineCap?: string;
@@ -48,6 +50,7 @@ export const style = ({
       typeof fillOpacity === "number" ? fillOpacity : 1
     ),
   }),
+  fillRule: fillRule === "evenodd" ? fillRule : "nonzero",
   ...(stroke &&
     stroke !== "none" && {
       stroke: applyOpacity(
@@ -70,9 +73,17 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
   },
 });
 
-export const svg = (viewBox: Rect): SVG => ({
+export const svg = (
+  viewBox: Rect,
+  unsupportedElements: string[],
+  unsupportedAttributes: string[]
+): SVG => ({
   children: [],
   params: {
     ...(viewBox && { viewBox }),
+  },
+  metadata: {
+    unsupportedAttributes,
+    unsupportedElements,
   },
 });

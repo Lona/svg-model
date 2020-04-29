@@ -20,6 +20,7 @@ import {
 import { convert as convertPath } from "./path";
 import elementToPath from "./element-to-path";
 import { getHrefNode } from "./traverse";
+import { getUnsupportedFeatures } from "./feature-detection";
 
 type Helpers = {
   getHrefNode: (id: string) => SVGPathConvertibleNode | undefined;
@@ -243,7 +244,13 @@ export function assignUniqueIds(converted: ConvertedNode[]) {
 export function convertRoot(root: SVGRoot): SVG {
   const { viewBox } = root.attributes;
   const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
-  const rootElement = svg(rect(vx, vy, vw, vh));
+  const unsupported = getUnsupportedFeatures(root);
+
+  const rootElement = svg(
+    rect(vx, vy, vw, vh),
+    unsupported.elements,
+    unsupported.attributes
+  );
 
   const convertedNodes = convertNodes(
     root.children,

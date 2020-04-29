@@ -90,6 +90,7 @@ Object {
           ],
           "style": Object {
             "fill": "#00C121",
+            "fillRule": "nonzero",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
           },
@@ -131,6 +132,7 @@ Object {
             },
           ],
           "style": Object {
+            "fillRule": "nonzero",
             "stroke": "#FFFFFF",
             "strokeLineCap": "round",
             "strokeWidth": 2,
@@ -141,6 +143,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 24,
@@ -242,6 +248,7 @@ Object {
           ],
           "style": Object {
             "fill": "green",
+            "fillRule": "nonzero",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
           },
@@ -251,6 +258,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 24,
@@ -422,6 +433,7 @@ Object {
           ],
           "style": Object {
             "fill": "black",
+            "fillRule": "nonzero",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
           },
@@ -431,6 +443,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 10,
@@ -568,6 +584,7 @@ Object {
           ],
           "style": Object {
             "fill": "#00C121",
+            "fillRule": "nonzero",
             "stroke": "#008E18",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
@@ -664,6 +681,7 @@ Object {
           ],
           "style": Object {
             "fill": "#FFFFFF",
+            "fillRule": "nonzero",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
           },
@@ -673,6 +691,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 24,
@@ -810,6 +832,7 @@ Object {
           ],
           "style": Object {
             "fill": "#8CDCFF",
+            "fillRule": "nonzero",
             "stroke": "#4FABFF",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
@@ -906,6 +929,7 @@ Object {
           ],
           "style": Object {
             "fill": "#FFFFFF",
+            "fillRule": "nonzero",
             "strokeLineCap": "butt",
             "strokeWidth": 1,
           },
@@ -915,6 +939,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 48,
@@ -1016,6 +1044,7 @@ Object {
           ],
           "style": Object {
             "fill": "#00C121",
+            "fillRule": "nonzero",
             "stroke": "green",
             "strokeLineCap": "butt",
             "strokeWidth": 2,
@@ -1026,6 +1055,10 @@ Object {
       "type": "path",
     },
   ],
+  "metadata": Object {
+    "unsupportedAttributes": Array [],
+    "unsupportedElements": Array [],
+  },
   "params": Object {
     "viewBox": Object {
       "height": 24,
