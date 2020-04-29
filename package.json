@@ -4,12 +4,13 @@
   "main": "lib/index.js",
   "browser": "dist/svg-model.umd.js",
   "license": "MIT",
+  "bin": "./lib/bin.js",
   "files": [
     "lib",
-    "dist",
-    "bin.js"
+    "dist"
   ],
   "scripts": {
+    "convert": "ts-node ./src/bin.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "npm run build:node && npm run build:web",

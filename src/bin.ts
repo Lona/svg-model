@@ -1,5 +1,7 @@
-const fs = require("fs");
-const convert = require("./lib/index.js").default;
+#!/usr/bin/env node
+
+import fs from "fs";
+import { convert } from "./index";
 
 const [, , filename] = process.argv;
 
