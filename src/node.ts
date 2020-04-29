@@ -108,6 +108,10 @@ function convertDrawableNode(
   context: SVGBaseAttributes,
   definitions: Helpers
 ): ChildElement | null {
+  if ("attributes" in child && child.attributes.mask) {
+    console.error("Ignoring mask attribute");
+  }
+
   switch (child.name) {
     case "path":
     case "polyline":
@@ -125,14 +129,16 @@ function convertDrawableNode(
       const ref = (href ?? xlinkHref)?.slice(1);
 
       if (!ref) {
-        console.log("<use> tag must have either href or xlink:href");
+        console.error("<use> tag must have either href or xlink:href");
         return null;
       }
 
       const definition = definitions.getHrefNode(ref);
 
       if (!definition) {
-        console.log(`Could not find element referenced by <use> tag: "${ref}"`);
+        console.error(
+          `Could not find element referenced by <use> tag: "${ref}"`
+        );
         return null;
       }
 
@@ -143,7 +149,7 @@ function convertDrawableNode(
       );
     }
     default:
-      console.log("Unused svg", child["type"], child["name"]);
+      console.error(`Unused svg ${child["type"]}: ${child["name"]}`);
       return null;
   }
 }
@@ -185,7 +191,7 @@ function convertNodes(
       const path = [...parentPath, name];
 
       if (node.name === "g") {
-        const childContext = mergeContexts(node.attributes, context);
+        const childContext = mergeContexts(context, node.attributes);
 
         return [
           ...acc,
@@ -194,7 +200,8 @@ function convertNodes(
       } else if (
         node.name === "desc" ||
         node.name === "title" ||
-        node.name === "defs"
+        node.name === "defs" ||
+        node.name === "mask"
       ) {
         return acc;
       } else {

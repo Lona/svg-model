@@ -7,6 +7,7 @@ export type SVGBaseAttributes = {
   "stroke-width"?: string;
   "stroke-linecap"?: string;
   transform?: string;
+  mask?: string;
 };
 
 export type SVGRectAttributes = SVGBaseAttributes & {
@@ -75,6 +76,12 @@ export type SVGPath = {
   attributes: SVGPathAttributes;
 };
 
+export type SVGMask = {
+  type: "element";
+  name: "mask";
+  attributes: SVGBaseAttributes;
+};
+
 export type SVGUse = {
   type: "element";
   name: "use";
@@ -115,6 +122,11 @@ export type SVGPathConvertibleNode =
 
 export type SVGDrawableNode = SVGPathConvertibleNode | SVGUse;
 
-export type SVGChildNode = SVGDefs | SVGGroup | SVGDrawableNode | SVGUnknown;
+export type SVGChildNode =
+  | SVGDefs
+  | SVGMask
+  | SVGGroup
+  | SVGDrawableNode
+  | SVGUnknown;
 
 export type SVGNode = SVGRoot | SVGChildNode;

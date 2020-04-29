@@ -39,7 +39,7 @@ export function convertCommand(segment: any[], x: number, y: number) {
       return cubicCurve(point(x3, y3), point(x1, y1), point(x2, y2));
     }
     default:
-      console.log("Path segment not used:", segment);
+      console.error("Path segment not used:", segment);
       return null;
   }
 }
