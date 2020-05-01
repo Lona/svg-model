@@ -109,10 +109,6 @@ function convertDrawableNode(
   context: SVGBaseAttributes,
   definitions: Helpers
 ): ChildElement | null {
-  if ("attributes" in child && child.attributes.mask) {
-    console.error("Ignoring mask attribute");
-  }
-
   switch (child.name) {
     case "path":
     case "polyline":
@@ -244,13 +240,9 @@ export function assignUniqueIds(converted: ConvertedNode[]) {
 export function convertRoot(root: SVGRoot): SVG {
   const { viewBox } = root.attributes;
   const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
-  const unsupported = getUnsupportedFeatures(root);
+  const unsupportedFeatures = getUnsupportedFeatures(root);
 
-  const rootElement = svg(
-    rect(vx, vy, vw, vh),
-    unsupported.elements,
-    unsupported.attributes
-  );
+  const rootElement = svg(rect(vx, vy, vw, vh), unsupportedFeatures);
 
   const convertedNodes = convertNodes(
     root.children,

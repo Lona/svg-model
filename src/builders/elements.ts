@@ -1,12 +1,10 @@
 import { Rect } from "../types/primitives";
 import { Style, Path, SVG, LineCap } from "../types/elements";
 import * as Commands from "../types/commands";
-
-const parseCSSColor: (color: string) => number[] = require("csscolorparser")
-  .parseCSSColor;
+import parseCSSColor from "../parse-css-color";
 
 function applyOpacity(color: string, opacity: number): string {
-  const [r, g, b, a] = parseCSSColor(color);
+  const [r, g, b, a] = parseCSSColor(color) ?? [255, 255, 255, 1];
 
   if (opacity >= 1) return color;
 
@@ -73,17 +71,12 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
   },
 });
 
-export const svg = (
-  viewBox: Rect,
-  unsupportedElements: string[],
-  unsupportedAttributes: string[]
-): SVG => ({
+export const svg = (viewBox: Rect, unsupportedFeatures: string[]): SVG => ({
   children: [],
   params: {
     ...(viewBox && { viewBox }),
   },
   metadata: {
-    unsupportedAttributes,
-    unsupportedElements,
+    unsupportedFeatures,
   },
 });

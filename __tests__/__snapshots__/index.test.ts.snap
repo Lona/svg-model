@@ -144,8 +144,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {
@@ -259,8 +258,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {
@@ -444,8 +442,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {
@@ -692,8 +689,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {
@@ -940,8 +936,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {
@@ -1056,8 +1051,7 @@ Object {
     },
   ],
   "metadata": Object {
-    "unsupportedAttributes": Array [],
-    "unsupportedElements": Array [],
+    "unsupportedFeatures": Array [],
   },
   "params": Object {
     "viewBox": Object {

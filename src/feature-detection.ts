@@ -1,5 +1,6 @@
 import { traverse } from "./traverse";
 import { SVGRoot } from "./types/svg";
+import parseCSSColor from "./parse-css-color";
 
 /**
  * All supported element names.
@@ -57,11 +58,10 @@ function unique<T>(elements: T[]): T[] {
   return Array.from(new Set(elements).values());
 }
 
-export function getUnsupportedFeatures(
-  root: SVGRoot
-): { elements: string[]; attributes: string[] } {
+export function getUnsupportedFeatures(root: SVGRoot): string[] {
   const elements: string[] = [];
   const attributes: string[] = [];
+  const attributeValues: string[] = [];
 
   traverse(root, (node) => {
     if (SUPPORTED_ELEMENT_NAMES.includes(node.name)) {
@@ -72,14 +72,31 @@ export function getUnsupportedFeatures(
             attributes.push(`${node.name}.${key}`);
           }
         });
+
+        if (
+          node.attributes.fill &&
+          node.attributes.fill !== "none" &&
+          !parseCSSColor(node.attributes.fill)
+        ) {
+          attributeValues.push(`${node.name}.fill.${node.attributes.fill}`);
+        }
+
+        if (
+          node.attributes.stroke &&
+          node.attributes.stroke !== "none" &&
+          !parseCSSColor(node.attributes.stroke)
+        ) {
+          attributeValues.push(`${node.name}.stroke.${node.attributes.stroke}`);
+        }
       }
     } else {
       elements.push(node.name);
     }
   });
 
-  return {
-    elements: unique(elements),
-    attributes: unique(attributes),
-  };
+  return [
+    ...unique(elements),
+    ...unique(attributes),
+    ...unique(attributeValues),
+  ];
 }

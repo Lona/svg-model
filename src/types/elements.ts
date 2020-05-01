@@ -50,8 +50,7 @@ export type SVG = {
     viewBox?: Rect;
   };
   metadata: {
-    unsupportedElements: string[];
-    unsupportedAttributes: string[];
+    unsupportedFeatures: string[];
   };
 };
 

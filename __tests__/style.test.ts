@@ -1,5 +1,6 @@
 import { style } from "../src/builders/elements";
 import { Style } from "../src";
+import parseCSSColor from "../src/parse-css-color";
 
 const svgDefaults: Style = {
   fill: "black",
@@ -53,6 +54,20 @@ describe("Style", () => {
       ...svgDefaults,
       fill: "red",
       stroke: "red",
+    });
+  });
+
+  describe("parseCSSColor", () => {
+    it(`parses standard colors`, () => {
+      return expect(parseCSSColor("red")).toEqual([255, 0, 0, 1]);
+    });
+
+    it(`ignores "none" color`, () => {
+      return expect(parseCSSColor("none")).toEqual(undefined);
+    });
+
+    it(`ignores invalid colors`, () => {
+      return expect(parseCSSColor("url(#gradient)")).toEqual(undefined);
     });
   });
 });
