@@ -146,7 +146,6 @@ function convertDrawableNode(
       );
     }
     default:
-      console.error(`Unused svg ${child["type"]}: ${child["name"]}`);
       return null;
   }
 }
