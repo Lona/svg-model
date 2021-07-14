@@ -271,6 +271,72 @@ Object {
 }
 `;
 
+exports[`index converts no-viewbox.svg 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 1,
+                  "y": 2,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 23,
+                  "y": 2,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 23,
+                  "y": 22,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 1,
+                  "y": 22,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "black",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "path0",
+      "type": "path",
+    },
+  ],
+  "metadata": Object {
+    "unsupportedFeatures": Array [],
+  },
+  "params": Object {},
+}
+`;
+
 exports[`index converts react-sketchapp-467.svg 1`] = `
 Object {
   "children": Array [

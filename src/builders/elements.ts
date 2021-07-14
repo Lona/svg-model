@@ -71,7 +71,10 @@ export const path = (style: Style, commands: Commands.Command[]): Path => ({
   },
 });
 
-export const svg = (viewBox: Rect, unsupportedFeatures: string[]): SVG => ({
+export const svg = (
+  viewBox: Rect | undefined,
+  unsupportedFeatures: string[]
+): SVG => ({
   children: [],
   params: {
     ...(viewBox && { viewBox }),

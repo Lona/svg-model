@@ -1,26 +1,23 @@
 import camelCase from "lodash.camelcase";
 import upperFirst from "lodash.upperfirst";
-
-import { rect } from "./builders/primitives";
-import { Path, ChildElement, SVG } from "./types/elements";
 import { path, style, svg } from "./builders/elements";
+import { rect } from "./builders/primitives";
+import elementToPath from "./element-to-path";
+import { getUnsupportedFeatures } from "./feature-detection";
+import { convert as convertPath } from "./path";
+import { getHrefNode } from "./traverse";
+import { ChildElement, Path, SVG } from "./types/elements";
+import { Rect } from "./types/primitives";
 import {
   SVGBaseAttributes,
-  SVGPathAttributes,
+  SVGChildNode,
   SVGDrawableNode,
-  SVGGroup,
+  SVGPath,
+  SVGPathAttributes,
+  SVGPathConvertibleNode,
   SVGRoot,
   SVGUnknown,
-  SVGChildNode,
-  SVGDefs,
-  SVGPath,
-  SVGPathConvertibleNode,
-  SVGNode,
 } from "./types/svg";
-import { convert as convertPath } from "./path";
-import elementToPath from "./element-to-path";
-import { getHrefNode } from "./traverse";
-import { getUnsupportedFeatures } from "./feature-detection";
 
 type Helpers = {
   getHrefNode: (id: string) => SVGPathConvertibleNode | undefined;
@@ -236,12 +233,19 @@ export function assignUniqueIds(converted: ConvertedNode[]) {
   return converted;
 }
 
+function parseViewBox(viewBox: string): Rect {
+  const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
+  return rect(vx, vy, vw, vh);
+}
+
 export function convertRoot(root: SVGRoot): SVG {
   const { viewBox } = root.attributes;
-  const [vx, vy, vw, vh] = viewBox.split(" ").map(parseFloat);
   const unsupportedFeatures = getUnsupportedFeatures(root);
 
-  const rootElement = svg(rect(vx, vy, vw, vh), unsupportedFeatures);
+  const rootElement = svg(
+    viewBox ? parseViewBox(viewBox) : undefined,
+    unsupportedFeatures
+  );
 
   const convertedNodes = convertNodes(
     root.children,
