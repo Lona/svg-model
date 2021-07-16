@@ -9,7 +9,7 @@ const assets = names.map((name) => {
   return { name, data: fs.readFileSync(assetPath, "utf8") };
 });
 
-describe("index", () => {
+describe("async", () => {
   assets.forEach((asset: { name: string; data: string }) => {
     it(`converts ${asset.name}`, async () => {
       const model = await convert(asset.data);

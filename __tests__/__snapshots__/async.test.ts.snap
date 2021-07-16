@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index converts check-circle.svg 1`] = `
+exports[`async converts check-circle.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -129,7 +129,7 @@ Object {
 }
 `;
 
-exports[`index converts group-precedence.svg 1`] = `
+exports[`async converts group-precedence.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -226,7 +226,7 @@ Object {
 }
 `;
 
-exports[`index converts no-viewbox.svg 1`] = `
+exports[`async converts no-viewbox.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -278,7 +278,7 @@ Object {
 }
 `;
 
-exports[`index converts quadratics.svg 1`] = `
+exports[`async converts quadratics.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -785,7 +785,7 @@ Object {
 }
 `;
 
-exports[`index converts react-sketchapp-467.svg 1`] = `
+exports[`async converts react-sketchapp-467.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -940,7 +940,7 @@ Object {
 }
 `;
 
-exports[`index converts toggle.svg 1`] = `
+exports[`async converts toggle.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -1147,7 +1147,7 @@ Object {
 }
 `;
 
-exports[`index converts toggle-vertical.svg 1`] = `
+exports[`async converts toggle-vertical.svg 1`] = `
 Object {
   "children": Array [
     Object {
@@ -1354,7 +1354,7 @@ Object {
 }
 `;
 
-exports[`index converts use-element.svg 1`] = `
+exports[`async converts use-element.svg 1`] = `
 Object {
   "children": Array [
     Object {
