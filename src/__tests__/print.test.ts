@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { convert } from "../src";
-import { printSVG } from "../src/print";
+import { convert } from "../index";
+import { printSVG } from "../print";
 
 const readAsset = (name: string) => {
-  const assetPath = path.join(__dirname, "../test/assets", name);
+  const assetPath = path.join(__dirname, "../../test/assets", name);
   return fs.readFileSync(assetPath, "utf8");
 };
 
