@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { convert } from "../src/index";
+import { convert } from "../src/async";
 
 const names = fs.readdirSync(path.join(__dirname, "../test/assets"));
 

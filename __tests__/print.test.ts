@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { convertSync } from "../src";
+import { convert } from "../src";
 import { printSVG } from "../src/print";
 
 const readAsset = (name: string) => {
@@ -10,21 +10,21 @@ const readAsset = (name: string) => {
 
 test("prints svg", () => {
   const asset = readAsset("check-circle.svg");
-  const converted = convertSync(asset);
+  const converted = convert(asset);
   const svg = printSVG(converted);
   expect(svg).toMatchSnapshot();
 });
 
 test("prints svg with quadratics", () => {
   const asset = readAsset("quadratics.svg");
-  const converted = convertSync(asset);
+  const converted = convert(asset);
   const svg = printSVG(converted);
   expect(svg).toMatchSnapshot();
 });
 
 test("prints svg without quadratics", () => {
   const asset = readAsset("quadratics.svg");
-  const converted = convertSync(asset, {
+  const converted = convert(asset, {
     convertQuadraticsToCubics: true,
   });
   const svg = printSVG(converted);
