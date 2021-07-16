@@ -2444,9 +2444,10 @@ css-what@^3.2.1:
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-3.2.1.tgz#f4a8f12421064621b456755e34a03a2c22df5da1"
   integrity sha512-WwOrosiQTvyms+Ti5ZC5vGEK0Vod3FTt1ca+payZqvKuGJF+dq7bG63DstxtN0dpm6FxY27a/zS3Wten+gEtGw==
 
-csscolorparser@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/csscolorparser/-/csscolorparser-1.0.3.tgz#b34f391eea4da8f3e98231e2ccd8df9c041f171b"
+csscolorparser-ts@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/csscolorparser-ts/-/csscolorparser-ts-1.1.1.tgz#b0baf95bee5240356c654827c936b170824d59d1"
+  integrity sha512-ye5PgztuoJPjbImgzJWSxCMG8ei7l59p2nNV0tn+1xjy22y5D3ub57eWIYOUQNQ3hdYX8FBTlgNu3WX0cx4Xag==
 
 csso@^4.0.2:
   version "4.0.3"

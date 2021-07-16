@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "csscolorparser": "^1.0.3",
+    "csscolorparser-ts": "^1.1.1",
     "element-to-path": "^1.2.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",

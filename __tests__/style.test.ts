@@ -1,6 +1,6 @@
+import { parseCSSColor } from "csscolorparser-ts";
 import { style } from "../src/elements";
 import { Style } from "../src";
-import parseCSSColor from "../src/parse-css-color";
 
 const svgDefaults: Style = {
   fill: "black",
@@ -63,11 +63,11 @@ describe("Style", () => {
     });
 
     it(`ignores "none" color`, () => {
-      return expect(parseCSSColor("none")).toEqual(undefined);
+      return expect(parseCSSColor("none")).toEqual(null);
     });
 
     it(`ignores invalid colors`, () => {
-      return expect(parseCSSColor("url(#gradient)")).toEqual(undefined);
+      return expect(parseCSSColor("url(#gradient)")).toEqual(null);
     });
   });
 });

@@ -1,6 +1,6 @@
-import { Rect } from "./primitives";
+import { parseCSSColor } from "csscolorparser-ts";
 import * as Commands from "./commands";
-import parseCSSColor from "./parse-css-color";
+import { Rect } from "./primitives";
 
 export type LineCap = "butt" | "round" | "square";
 
