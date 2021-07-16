@@ -6,8 +6,9 @@ import elementToPath from "./element-to-path";
 import { getUnsupportedFeatures } from "./feature-detection";
 import { convert as convertPath } from "./path";
 import { getHrefNode } from "./traverse";
+import { Command, CubicCurve } from "./types/commands";
 import { ChildElement, Path, SVG } from "./types/elements";
-import { Rect } from "./types/primitives";
+import { Point, Rect } from "./types/primitives";
 import {
   SVGBaseAttributes,
   SVGChildNode,
@@ -238,7 +239,50 @@ function parseViewBox(viewBox: string): Rect {
   return rect(vx, vy, vw, vh);
 }
 
-export function convertRoot(root: SVGRoot): SVG {
+function convertQuadraticToCubic(
+  currentPoint: Point,
+  controlPoint: Point,
+  to: Point
+): CubicCurve {
+  return {
+    type: "cubicCurve",
+    data: {
+      to,
+      controlPoint1: {
+        x: currentPoint.x + (2.0 / 3.0) * (controlPoint.x - currentPoint.x),
+        y: currentPoint.y + (2.0 / 3.0) * (controlPoint.y - currentPoint.y),
+      },
+      controlPoint2: {
+        x: to.x + (2.0 / 3.0) * (controlPoint.x - to.x),
+        y: to.y + (2.0 / 3.0) * (controlPoint.y - to.y),
+      },
+    },
+  };
+}
+
+function findLastPoint(commands: Command[], endIndex: number): Point {
+  for (let i = endIndex; i < commands.length; i--) {
+    const command = commands[i];
+
+    switch (command.type) {
+      case "line":
+      case "move":
+      case "quadCurve":
+      case "cubicCurve":
+        return command.data.to;
+      case "close":
+        break;
+    }
+  }
+
+  return { x: 0, y: 0 };
+}
+
+export type ConvertOptions = {
+  convertQuadraticsToCubics: boolean;
+};
+
+export function convertRoot(root: SVGRoot, options?: ConvertOptions): SVG {
   const { viewBox } = root.attributes;
   const unsupportedFeatures = getUnsupportedFeatures(root);
 
@@ -259,6 +303,22 @@ export function convertRoot(root: SVGRoot): SVG {
   assignUniqueIds(convertedNodes);
 
   rootElement.children = convertedNodes.map((node) => node.element);
+
+  if (options?.convertQuadraticsToCubics) {
+    rootElement.children.forEach((element) => {
+      element.data.params.commands = element.data.params.commands.map(
+        (command, index, commands) => {
+          if (command.type !== "quadCurve") return command;
+
+          const currentPoint = findLastPoint(commands, index - 1);
+
+          const { to, controlPoint } = command.data;
+
+          return convertQuadraticToCubic(currentPoint, controlPoint, to);
+        }
+      );
+    });
+  }
 
   return rootElement;
 }

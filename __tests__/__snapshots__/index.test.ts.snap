@@ -337,6 +337,616 @@ Object {
 }
 `;
 
+exports[`index converts quadratics.svg 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 200,
+                  "y": 300,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint": Object {
+                  "x": 400,
+                  "y": 50,
+                },
+                "to": Object {
+                  "x": 600,
+                  "y": 300,
+                },
+              },
+              "type": "quadCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint": Object {
+                  "x": 800,
+                  "y": 550,
+                },
+                "to": Object {
+                  "x": 1000,
+                  "y": 300,
+                },
+              },
+              "type": "quadCurve",
+            },
+          ],
+          "style": Object {
+            "fillRule": "nonzero",
+            "stroke": "red",
+            "strokeLineCap": "butt",
+            "strokeWidth": 5,
+          },
+        },
+      },
+      "id": "path0",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 210,
+                  "y": 300,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 210,
+                  "y": 305.52284749830795,
+                },
+                "controlPoint2": Object {
+                  "x": 205.52284749830793,
+                  "y": 310,
+                },
+                "to": Object {
+                  "x": 200,
+                  "y": 310,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 194.47715250169207,
+                  "y": 310,
+                },
+                "controlPoint2": Object {
+                  "x": 190,
+                  "y": 305.52284749830795,
+                },
+                "to": Object {
+                  "x": 190,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 190,
+                  "y": 294.47715250169205,
+                },
+                "controlPoint2": Object {
+                  "x": 194.47715250169207,
+                  "y": 290,
+                },
+                "to": Object {
+                  "x": 200,
+                  "y": 290,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 205.52284749830793,
+                  "y": 290,
+                },
+                "controlPoint2": Object {
+                  "x": 210,
+                  "y": 294.47715250169205,
+                },
+                "to": Object {
+                  "x": 210,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "black",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "g1.circle0",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 610,
+                  "y": 300,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 610,
+                  "y": 305.52284749830795,
+                },
+                "controlPoint2": Object {
+                  "x": 605.5228474983079,
+                  "y": 310,
+                },
+                "to": Object {
+                  "x": 600,
+                  "y": 310,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 594.4771525016921,
+                  "y": 310,
+                },
+                "controlPoint2": Object {
+                  "x": 590,
+                  "y": 305.52284749830795,
+                },
+                "to": Object {
+                  "x": 590,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 590,
+                  "y": 294.47715250169205,
+                },
+                "controlPoint2": Object {
+                  "x": 594.4771525016921,
+                  "y": 290,
+                },
+                "to": Object {
+                  "x": 600,
+                  "y": 290,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 605.5228474983079,
+                  "y": 290,
+                },
+                "controlPoint2": Object {
+                  "x": 610,
+                  "y": 294.47715250169205,
+                },
+                "to": Object {
+                  "x": 610,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "black",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "g1.circle1",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 1010,
+                  "y": 300,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 1010,
+                  "y": 305.52284749830795,
+                },
+                "controlPoint2": Object {
+                  "x": 1005.5228474983079,
+                  "y": 310,
+                },
+                "to": Object {
+                  "x": 1000,
+                  "y": 310,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 994.4771525016921,
+                  "y": 310,
+                },
+                "controlPoint2": Object {
+                  "x": 990,
+                  "y": 305.52284749830795,
+                },
+                "to": Object {
+                  "x": 990,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 990,
+                  "y": 294.47715250169205,
+                },
+                "controlPoint2": Object {
+                  "x": 994.4771525016921,
+                  "y": 290,
+                },
+                "to": Object {
+                  "x": 1000,
+                  "y": 290,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 1005.5228474983079,
+                  "y": 290,
+                },
+                "controlPoint2": Object {
+                  "x": 1010,
+                  "y": 294.47715250169205,
+                },
+                "to": Object {
+                  "x": 1010,
+                  "y": 300,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "black",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "circle2",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 410,
+                  "y": 50,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 410,
+                  "y": 55.52284749830793,
+                },
+                "controlPoint2": Object {
+                  "x": 405.52284749830795,
+                  "y": 60,
+                },
+                "to": Object {
+                  "x": 400,
+                  "y": 60,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 394.47715250169205,
+                  "y": 60,
+                },
+                "controlPoint2": Object {
+                  "x": 390,
+                  "y": 55.52284749830793,
+                },
+                "to": Object {
+                  "x": 390,
+                  "y": 50,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 390,
+                  "y": 44.47715250169207,
+                },
+                "controlPoint2": Object {
+                  "x": 394.47715250169205,
+                  "y": 40,
+                },
+                "to": Object {
+                  "x": 400,
+                  "y": 40,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 405.52284749830795,
+                  "y": 40,
+                },
+                "controlPoint2": Object {
+                  "x": 410,
+                  "y": 44.47715250169206,
+                },
+                "to": Object {
+                  "x": 410,
+                  "y": 50,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "#888888",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "g2.circle0",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 810,
+                  "y": 550,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 810,
+                  "y": 555.5228474983079,
+                },
+                "controlPoint2": Object {
+                  "x": 805.5228474983079,
+                  "y": 560,
+                },
+                "to": Object {
+                  "x": 800,
+                  "y": 560,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 794.4771525016921,
+                  "y": 560,
+                },
+                "controlPoint2": Object {
+                  "x": 790,
+                  "y": 555.5228474983079,
+                },
+                "to": Object {
+                  "x": 790,
+                  "y": 550,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 790,
+                  "y": 544.4771525016921,
+                },
+                "controlPoint2": Object {
+                  "x": 794.4771525016921,
+                  "y": 540,
+                },
+                "to": Object {
+                  "x": 800,
+                  "y": 540,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "data": Object {
+                "controlPoint1": Object {
+                  "x": 805.5228474983079,
+                  "y": 540,
+                },
+                "controlPoint2": Object {
+                  "x": 810,
+                  "y": 544.4771525016921,
+                },
+                "to": Object {
+                  "x": 810,
+                  "y": 550,
+                },
+              },
+              "type": "cubicCurve",
+            },
+            Object {
+              "type": "close",
+            },
+          ],
+          "style": Object {
+            "fill": "#888888",
+            "fillRule": "nonzero",
+            "strokeLineCap": "butt",
+            "strokeWidth": 1,
+          },
+        },
+      },
+      "id": "g2.circle1",
+      "type": "path",
+    },
+    Object {
+      "data": Object {
+        "params": Object {
+          "commands": Array [
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 200,
+                  "y": 300,
+                },
+              },
+              "type": "move",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 400,
+                  "y": 50,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 600,
+                  "y": 300,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 800,
+                  "y": 550,
+                },
+              },
+              "type": "line",
+            },
+            Object {
+              "data": Object {
+                "to": Object {
+                  "x": 1000,
+                  "y": 300,
+                },
+              },
+              "type": "line",
+            },
+          ],
+          "style": Object {
+            "fillRule": "nonzero",
+            "stroke": "#888888",
+            "strokeLineCap": "butt",
+            "strokeWidth": 2,
+          },
+        },
+      },
+      "id": "path3",
+      "type": "path",
+    },
+  ],
+  "metadata": Object {
+    "unsupportedFeatures": Array [],
+  },
+  "params": Object {
+    "viewBox": Object {
+      "height": 600,
+      "width": 1200,
+      "x": 0,
+      "y": 0,
+    },
+  },
+}
+`;
+
 exports[`index converts react-sketchapp-467.svg 1`] = `
 Object {
   "children": Array [

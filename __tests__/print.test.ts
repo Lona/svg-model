@@ -14,3 +14,19 @@ test("prints svg", () => {
   const svg = printSVG(converted);
   expect(svg).toMatchSnapshot();
 });
+
+test("prints svg with quadratics", () => {
+  const asset = readAsset("quadratics.svg");
+  const converted = convertSync(asset);
+  const svg = printSVG(converted);
+  expect(svg).toMatchSnapshot();
+});
+
+test("prints svg without quadratics", () => {
+  const asset = readAsset("quadratics.svg");
+  const converted = convertSync(asset, {
+    convertQuadraticsToCubics: true,
+  });
+  const svg = printSVG(converted);
+  expect(svg).toMatchSnapshot();
+});
