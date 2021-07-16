@@ -61,7 +61,7 @@ export function printSVG(svg: SVG) {
       "xmlns:xlink": "http://www.w3.org/1999/xlink",
     },
     children: svg.children.map((path): XMLElement => {
-      const { commands, style } = path.data.params;
+      const { commands, style } = path;
 
       return {
         name: "path",

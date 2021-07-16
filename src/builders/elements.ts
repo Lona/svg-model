@@ -61,14 +61,9 @@ export const style = ({
 });
 
 export const path = (style: Style, commands: Commands.Command[]): Path => ({
-  type: "path",
   id: "",
-  data: {
-    params: {
-      commands,
-      style,
-    },
-  },
+  commands,
+  style,
 });
 
 export const svg = (

@@ -7,7 +7,7 @@ import { getUnsupportedFeatures } from "./feature-detection";
 import { convert as convertPath } from "./path";
 import { getHrefNode } from "./traverse";
 import { Command, CubicCurve } from "./types/commands";
-import { ChildElement, Path, SVG } from "./types/elements";
+import { Path, SVG } from "./types/elements";
 import { Point, Rect } from "./types/primitives";
 import {
   SVGBaseAttributes,
@@ -106,7 +106,7 @@ function convertDrawableNode(
   child: SVGDrawableNode | SVGUnknown,
   context: SVGBaseAttributes,
   definitions: Helpers
-): ChildElement | null {
+): Path | null {
   switch (child.name) {
     case "path":
     case "polyline":
@@ -166,7 +166,7 @@ function generateName(
   );
 }
 
-type ConvertedNode = { element: ChildElement; path: string[] };
+type ConvertedNode = { element: Path; path: string[] };
 
 /**
  * Convert all children, filtering out groups and adding the "element path",
@@ -306,17 +306,15 @@ export function convertRoot(root: SVGRoot, options?: ConvertOptions): SVG {
 
   if (options?.convertQuadraticsToCubics) {
     rootElement.children.forEach((element) => {
-      element.data.params.commands = element.data.params.commands.map(
-        (command, index, commands) => {
-          if (command.type !== "quadCurve") return command;
+      element.commands = element.commands.map((command, index) => {
+        if (command.type !== "quadCurve") return command;
 
-          const currentPoint = findLastPoint(commands, index - 1);
+        const currentPoint = findLastPoint(element.commands, index - 1);
 
-          const { to, controlPoint } = command.data;
+        const { to, controlPoint } = command.data;
 
-          return convertQuadraticToCubic(currentPoint, controlPoint, to);
-        }
-      );
+        return convertQuadraticToCubic(currentPoint, controlPoint, to);
+      });
     });
   }
 

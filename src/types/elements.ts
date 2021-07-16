@@ -31,21 +31,14 @@ export type Style = {
   strokeLineCap: LineCap;
 };
 
-export type PathData = {
-  params: {
-    commands: Commands.Command[];
-    style: Style;
-  };
-};
-
 export type Path = {
-  type: "path";
   id: string;
-  data: PathData;
+  commands: Commands.Command[];
+  style: Style;
 };
 
 export type SVG = {
-  children: ChildElement[];
+  children: Path[];
   params: {
     viewBox?: Rect;
   };
@@ -53,5 +46,3 @@ export type SVG = {
     unsupportedFeatures: string[];
   };
 };
-
-export type ChildElement = Path;
