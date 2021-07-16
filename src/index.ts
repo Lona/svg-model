@@ -1,6 +1,6 @@
 import { ConvertOptions, convertRoot } from "./node";
 import { SVGRoot } from "./types/svg";
-import { SVG } from "./types/elements";
+import { SVG } from "./elements";
 import SVGO from "svgo";
 
 const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
@@ -41,6 +41,6 @@ export async function convert(
   return convertRoot(root, options);
 }
 
-export * from "./types/elements";
-export * from "./types/primitives";
-export * from "./builders/commands";
+export * from "./elements";
+export * from "./primitives";
+export * from "./commands";

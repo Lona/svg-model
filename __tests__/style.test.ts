@@ -1,4 +1,4 @@
-import { style } from "../src/builders/elements";
+import { style } from "../src/elements";
 import { Style } from "../src";
 import parseCSSColor from "../src/parse-css-color";
 

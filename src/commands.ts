@@ -1,4 +1,4 @@
-import { Point } from "../types/primitives";
+import { Point } from "./primitives";
 
 export const move = (to: Point) => ({ type: "move", to } as const);
 

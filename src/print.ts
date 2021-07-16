@@ -1,6 +1,6 @@
-import { Command } from "./builders/commands";
-import { SVG } from "./types/elements";
-import { Point } from "./types/primitives";
+import { Command } from "./commands";
+import { SVG } from "./elements";
+import { Point } from "./primitives";
 
 const round = (number: number, precision: number): number => {
   const base = Math.pow(10, precision);

@@ -1,14 +1,14 @@
 import camelCase from "lodash.camelcase";
 import upperFirst from "lodash.upperfirst";
-import { path, style, svg } from "./builders/elements";
-import { rect } from "./builders/primitives";
+import { path, style, svg } from "./elements";
+import { rect } from "./primitives";
 import elementToPath from "./element-to-path";
 import { getUnsupportedFeatures } from "./feature-detection";
 import { convert as convertPath } from "./path";
 import { getHrefNode } from "./traverse";
-import { Command, CubicCurve } from "./builders/commands";
-import { Path, SVG } from "./types/elements";
-import { Point, Rect } from "./types/primitives";
+import { Command, CubicCurve } from "./commands";
+import { Path, SVG } from "./elements";
+import { Point, Rect } from "./primitives";
 import {
   SVGBaseAttributes,
   SVGChildNode,
