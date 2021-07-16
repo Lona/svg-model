@@ -46,6 +46,19 @@ export type SVG = {
   };
 };
 
+export type CommandWithoutQuadratics = Exclude<
+  Commands.Command,
+  Commands.QuadCurve
+>;
+
+export type PathWithoutQuadratics = Omit<Path, "commands"> & {
+  commands: CommandWithoutQuadratics[];
+};
+
+export type SVGWithoutQuadratics = Omit<SVG, "children"> & {
+  children: PathWithoutQuadratics[];
+};
+
 function applyOpacity(color: string, opacity: number): string {
   const [r, g, b, a] = parseCSSColor(color) ?? [255, 255, 255, 1];
 

@@ -1,6 +1,6 @@
 import { ConvertOptions, convertRoot } from "./node";
 import { SVGRoot } from "./types/svg";
-import { SVG } from "./elements";
+import { SVG, SVGWithoutQuadratics } from "./elements";
 import SVGO from "svgo";
 
 const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
@@ -13,6 +13,11 @@ const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
  * @param svg {string}
  * @param options {ConvertOptions}
  */
+export function convertSync(svg: string, options?: {}): SVG;
+export function convertSync(
+  svg: string,
+  options?: { convertQuadraticsToCubics: true }
+): SVGWithoutQuadratics;
 export function convertSync(svg: string, options?: ConvertOptions): SVG {
   const root = parseSync(svg);
   return convertRoot(root, options);
@@ -26,14 +31,22 @@ export function convertSync(svg: string, options?: ConvertOptions): SVG {
  * @param svg
  * @param options {ConvertOptions}
  */
+export async function convert(svg: string, options?: {}): Promise<SVG>;
+export async function convert(
+  svg: string,
+  options?: { convertQuadraticsToCubics: true }
+): Promise<SVGWithoutQuadratics>;
 export async function convert(
   svg: string,
   options?: ConvertOptions
 ): Promise<SVG> {
-  if (process.env.PLATFORM === "web") {
-    return convertSync(svg, options);
-  }
+  return convertSync(
+    process.env.PLATFORM === "web" ? svg : await optimize(svg),
+    options
+  );
+}
 
+async function optimize(svg: string) {
   const svgo = new SVGO({
     plugins: [
       { removeUselessDefs: true },
@@ -43,8 +56,7 @@ export async function convert(
     ],
   });
   const optimized = await svgo.optimize(svg);
-  const root = parseSync(optimized.data);
-  return convertRoot(root, options);
+  return optimized.data;
 }
 
 export * from "./elements";

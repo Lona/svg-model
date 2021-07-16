@@ -277,7 +277,7 @@ function findLastPoint(commands: Command[], endIndex: number): Point {
 }
 
 export type ConvertOptions = {
-  convertQuadraticsToCubics: boolean;
+  convertQuadraticsToCubics?: boolean;
 };
 
 export function convertRoot(root: SVGRoot, options?: ConvertOptions): SVG {
