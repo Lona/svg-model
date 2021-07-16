@@ -6,8 +6,9 @@ export * from "./elements";
 export * from "./primitives";
 export * from "./commands";
 export * from "./style";
+export { parseCSSColor } from "csscolorparser-ts";
 
-const parseSync: (string: string) => SVGRoot = require("svgson").parseSync;
+export const parse: (string: string) => SVGRoot = require("svgson").parseSync;
 
 /**
  * Synchronously convert an SVG file string into a data model.
@@ -21,6 +22,6 @@ export function convert(
   options?: { convertQuadraticsToCubics: true }
 ): SVGWithoutQuadratics;
 export function convert(svg: string, options?: ConvertOptions): SVG {
-  const root = parseSync(svg);
+  const root = parse(svg);
   return convertRoot(root, options);
 }
