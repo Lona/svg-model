@@ -21,6 +21,8 @@ export function convertSync(svg: string, options?: ConvertOptions): SVG {
 /**
  * Convert an SVG file string into a data model.
  *
+ * If running in node, we first optimize the SVG using SVGO.
+ *
  * @param svg
  * @param options {ConvertOptions}
  */
@@ -28,6 +30,10 @@ export async function convert(
   svg: string,
   options?: ConvertOptions
 ): Promise<SVG> {
+  if (process.env.PLATFORM === "web") {
+    return convertSync(svg, options);
+  }
+
   const svgo = new SVGO({
     plugins: [
       { removeUselessDefs: true },
