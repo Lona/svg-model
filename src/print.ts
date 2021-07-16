@@ -1,3 +1,4 @@
+import { Command } from "./types/commands";
 import { SVG } from "./types/elements";
 import { Point } from "./types/primitives";
 
@@ -8,6 +9,29 @@ const round = (number: number, precision: number): number => {
 
 const stringifyPoint = (point: Point): string =>
   [round(point.x, 3), round(point.y, 3)].join(",");
+
+const stringifyCommand = (command: Command) => {
+  switch (command.type) {
+    case "close":
+      return "Z";
+    case "move":
+      return `M${stringifyPoint(command.to)}`;
+    case "line":
+      return `L${stringifyPoint(command.to)}`;
+    case "quadCurve": {
+      const parameters = [command.controlPoint, command.to].map(stringifyPoint);
+      return `Q${parameters.join(" ")}`;
+    }
+    case "cubicCurve": {
+      const parameters = [
+        command.controlPoint1,
+        command.controlPoint2,
+        command.to,
+      ].map(stringifyPoint);
+      return `C${parameters.join(" ")}`;
+    }
+  }
+};
 
 type XMLElement = {
   name: string;
@@ -72,33 +96,7 @@ export function printSVG(svg: SVG) {
             "stroke-width": style.strokeWidth.toString(),
           }),
           ...(style.strokeLineCap && { "stroke-linecap": style.strokeLineCap }),
-          d: commands
-            .map((command) => {
-              switch (command.type) {
-                case "close":
-                  return "Z";
-                case "move":
-                  return `M${stringifyPoint(command.data.to)}`;
-                case "line":
-                  return `L${stringifyPoint(command.data.to)}`;
-                case "quadCurve": {
-                  const parameters = [
-                    command.data.controlPoint,
-                    command.data.to,
-                  ].map(stringifyPoint);
-                  return `Q${parameters.join(" ")}`;
-                }
-                case "cubicCurve": {
-                  const parameters = [
-                    command.data.controlPoint1,
-                    command.data.controlPoint2,
-                    command.data.to,
-                  ].map(stringifyPoint);
-                  return `C${parameters.join(" ")}`;
-                }
-              }
-            })
-            .join(" "),
+          d: commands.map(stringifyCommand).join(" "),
         },
         children: [],
       };

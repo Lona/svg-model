@@ -246,16 +246,14 @@ function convertQuadraticToCubic(
 ): CubicCurve {
   return {
     type: "cubicCurve",
-    data: {
-      to,
-      controlPoint1: {
-        x: currentPoint.x + (2.0 / 3.0) * (controlPoint.x - currentPoint.x),
-        y: currentPoint.y + (2.0 / 3.0) * (controlPoint.y - currentPoint.y),
-      },
-      controlPoint2: {
-        x: to.x + (2.0 / 3.0) * (controlPoint.x - to.x),
-        y: to.y + (2.0 / 3.0) * (controlPoint.y - to.y),
-      },
+    to,
+    controlPoint1: {
+      x: currentPoint.x + (2.0 / 3.0) * (controlPoint.x - currentPoint.x),
+      y: currentPoint.y + (2.0 / 3.0) * (controlPoint.y - currentPoint.y),
+    },
+    controlPoint2: {
+      x: to.x + (2.0 / 3.0) * (controlPoint.x - to.x),
+      y: to.y + (2.0 / 3.0) * (controlPoint.y - to.y),
     },
   };
 }
@@ -269,7 +267,7 @@ function findLastPoint(commands: Command[], endIndex: number): Point {
       case "move":
       case "quadCurve":
       case "cubicCurve":
-        return command.data.to;
+        return command.to;
       case "close":
         break;
     }
@@ -309,11 +307,11 @@ export function convertRoot(root: SVGRoot, options?: ConvertOptions): SVG {
       element.commands = element.commands.map((command, index) => {
         if (command.type !== "quadCurve") return command;
 
-        const currentPoint = findLastPoint(element.commands, index - 1);
-
-        const { to, controlPoint } = command.data;
-
-        return convertQuadraticToCubic(currentPoint, controlPoint, to);
+        return convertQuadraticToCubic(
+          findLastPoint(element.commands, index - 1),
+          command.controlPoint,
+          command.to
+        );
       });
     });
   }
