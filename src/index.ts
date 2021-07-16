@@ -62,3 +62,4 @@ async function optimize(svg: string) {
 export * from "./elements";
 export * from "./primitives";
 export * from "./commands";
+export * from "./style";

@@ -1,6 +1,6 @@
 import camelCase from "lodash.camelcase";
 import upperFirst from "lodash.upperfirst";
-import { path, style, svg } from "./elements";
+import { path, svg } from "./elements";
 import { rect } from "./primitives";
 import elementToPath from "./element-to-path";
 import { getUnsupportedFeatures } from "./feature-detection";
@@ -19,6 +19,7 @@ import {
   SVGRoot,
   SVGUnknown,
 } from "./types/svg";
+import { style } from "./style";
 
 type Helpers = {
   getHrefNode: (id: string) => SVGPathConvertibleNode | undefined;

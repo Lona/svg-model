@@ -1,6 +1,5 @@
 import { parseCSSColor } from "csscolorparser-ts";
-import { style } from "../src/elements";
-import { Style } from "../src";
+import { Style, style } from "../src";
 
 const svgDefaults: Style = {
   fill: "black",
