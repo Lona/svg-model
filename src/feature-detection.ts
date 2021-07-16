@@ -1,6 +1,6 @@
 import { parseCSSColor } from "csscolorparser-ts";
 import { traverse } from "./traverse";
-import { SVGRoot } from "./types/svg";
+import { SVGRoot } from "./svg-types";
 
 /**
  * All supported element names.

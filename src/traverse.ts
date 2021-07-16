@@ -1,4 +1,4 @@
-import { SVGNode, SVGRoot, SVGPathConvertibleNode } from "./types/svg";
+import { SVGNode, SVGRoot, SVGPathConvertibleNode } from "./svg-types";
 
 export function traverse(root: SVGNode, f: (node: SVGNode) => void) {
   f(root);

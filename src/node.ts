@@ -18,7 +18,7 @@ import {
   SVGPathConvertibleNode,
   SVGRoot,
   SVGUnknown,
-} from "./types/svg";
+} from "./svg-types";
 import { style } from "./style";
 
 type Helpers = {

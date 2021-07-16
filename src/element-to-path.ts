@@ -1,4 +1,4 @@
-import { SVGNode } from "./types/svg";
+import { SVGNode } from "./svg-types";
 
 export default function elementToPath(element: SVGNode): string {
   const obj = require("element-to-path");

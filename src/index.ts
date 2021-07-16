@@ -1,5 +1,5 @@
 import { ConvertOptions, convertRoot } from "./node";
-import { SVGRoot } from "./types/svg";
+import { SVGRoot } from "./svg-types";
 import { SVG, SVGWithoutQuadratics } from "./elements";
 
 export * from "./elements";
