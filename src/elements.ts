@@ -40,9 +40,7 @@ export type Path = {
 
 export type SVG = {
   children: Path[];
-  params: {
-    viewBox?: Rect;
-  };
+  viewBox?: Rect;
   metadata: {
     unsupportedFeatures: string[];
   };
@@ -116,9 +114,7 @@ export const svg = (
   unsupportedFeatures: string[]
 ): SVG => ({
   children: [],
-  params: {
-    ...(viewBox && { viewBox }),
-  },
+  ...(viewBox && { viewBox }),
   metadata: {
     unsupportedFeatures,
   },

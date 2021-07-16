@@ -120,13 +120,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 24,
-      "width": 24,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 24,
+    "width": 24,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -219,13 +217,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 24,
-      "width": 24,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 24,
+    "width": 24,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -279,7 +275,6 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {},
 }
 `;
 
@@ -781,13 +776,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 600,
-      "width": 1200,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 600,
+    "width": 1200,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -938,13 +931,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 10,
-      "width": 10,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 10,
+    "width": 10,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -1147,13 +1138,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 24,
-      "width": 48,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 24,
+    "width": 48,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -1356,13 +1345,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 48,
-      "width": 24,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 48,
+    "width": 24,
+    "x": 0,
+    "y": 0,
   },
 }
 `;
@@ -1456,13 +1443,11 @@ Object {
   "metadata": Object {
     "unsupportedFeatures": Array [],
   },
-  "params": Object {
-    "viewBox": Object {
-      "height": 24,
-      "width": 24,
-      "x": 0,
-      "y": 0,
-    },
+  "viewBox": Object {
+    "height": 24,
+    "width": 24,
+    "x": 0,
+    "y": 0,
   },
 }
 `;

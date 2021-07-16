@@ -69,7 +69,7 @@ function stringifyXMLElement({
 }
 
 export function printSVG(svg: SVG) {
-  const viewBox = svg.params.viewBox;
+  const viewBox = svg.viewBox;
   const root: XMLElement = {
     name: "svg",
     attributes: {
