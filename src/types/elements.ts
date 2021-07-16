@@ -1,5 +1,5 @@
 import { Rect } from "./primitives";
-import * as Commands from "./commands";
+import * as Commands from "../builders/commands";
 
 export type LineCap = "butt" | "round" | "square";
 

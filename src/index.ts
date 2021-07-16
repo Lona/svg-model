@@ -42,5 +42,5 @@ export async function convert(
 }
 
 export * from "./types/elements";
-export * from "./types/commands";
 export * from "./types/primitives";
+export * from "./builders/commands";

@@ -6,7 +6,7 @@ import elementToPath from "./element-to-path";
 import { getUnsupportedFeatures } from "./feature-detection";
 import { convert as convertPath } from "./path";
 import { getHrefNode } from "./traverse";
-import { Command, CubicCurve } from "./types/commands";
+import { Command, CubicCurve } from "./builders/commands";
 import { Path, SVG } from "./types/elements";
 import { Point, Rect } from "./types/primitives";
 import {

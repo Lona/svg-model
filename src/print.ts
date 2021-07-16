@@ -1,4 +1,4 @@
-import { Command } from "./types/commands";
+import { Command } from "./builders/commands";
 import { SVG } from "./types/elements";
 import { Point } from "./types/primitives";
 
@@ -102,5 +102,6 @@ export function printSVG(svg: SVG) {
       };
     }),
   };
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n${stringifyXMLElement(root)}`;
 }

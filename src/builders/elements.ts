@@ -1,6 +1,6 @@
 import { Rect } from "../types/primitives";
 import { Style, Path, SVG, LineCap } from "../types/elements";
-import * as Commands from "../types/commands";
+import * as Commands from "../builders/commands";
 import parseCSSColor from "../parse-css-color";
 
 function applyOpacity(color: string, opacity: number): string {

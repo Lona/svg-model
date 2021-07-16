@@ -1,6 +1,6 @@
 import { point } from "./builders/primitives";
 import { move, line, close, quadCurve, cubicCurve } from "./builders/commands";
-import * as Commands from "./types/commands";
+import * as Commands from "./builders/commands";
 
 const svgpath = require("svgpath");
 
