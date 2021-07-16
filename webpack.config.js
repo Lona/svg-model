@@ -22,9 +22,6 @@ module.exports = () => {
         },
         libraryTarget: "umd",
       },
-      externals: {
-        svgo: "commonjs2 svgo",
-      },
       plugins: [
         new webpack.DefinePlugin({
           "process.env.NODE_ENV": JSON.stringify("production"),
@@ -34,7 +31,7 @@ module.exports = () => {
         rules: [
           {
             test: /\.m?js$/,
-            exclude: /(node_modules)/,
+            exclude: /node_modules\/(?!csscolorparser-ts)/,
             use: {
               loader: "babel-loader",
               options: {
