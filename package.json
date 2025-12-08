@@ -1,6 +1,6 @@
 {
   "name": "@lona/svg-model",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.11",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
