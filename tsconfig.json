@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "CommonJS",
-    "outDir": "./lib",
+    "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
@@ -10,5 +10,5 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["ESNext"]
   },
-  "exclude": ["node_modules", "src/__tests__", "**/*.test.ts", "lib"]
+  "exclude": ["node_modules", "src/__tests__", "**/*.test.ts", "lib", "dist"]
 }
